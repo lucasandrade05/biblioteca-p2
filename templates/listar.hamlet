@@ -1,0 +1,64 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+ <div class="container-fluid">
+  <div class="navbar-header">
+   <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+    <span class="sr-only">Toggle navigation
+    <span class="icon-bar">
+    <span class="icon-bar">
+    <span class="icon-bar">
+    
+   <a class="navbar-brand" href="#">Biblioteca
+   
+  <div id="navbar" class="navbar-collapse collapse">
+   <ul class="nav navbar-nav navbar-right">
+    <li><a href="#">In&iacute;cio</a></li>
+    <li><a href="#">Op&ccedil;&oacute;es</a></li>
+    <li><a href="#">Perfil</a></li>
+    <li><a href="#">Ajuda</a></li>
+
+<div id="main" class="container-fluid" style="margin-top: 50px">
+ <div id="top" class="row">
+  <div class="col-sm-3">
+   <h2>Livros
+  <div class="col-sm-6">
+   <div class="input-group h2">
+    <input name="data[search]" class="form-control" id="search" type="text" placeholder="Pesquisar Livros">
+    <span class="input-group-btn">
+     <button class="btn btn-primary" type="submit">
+      <span class="glyphicon glyphicon-search">
+  <div class="col-sm-3">
+   <a href="adicionar.html" class="btn btn-primary pull-right h2">Novo Livro
+ <hr />
+ <div id="list" class="row">
+  <div class="table-responsive col-md-12">
+   <table class="table table-striped" cellspacing="0" cellpadding="0">
+    <thead>
+     <tr>
+      <th>Código
+      <th>Nome Livro
+      <th>Autor
+      <th>Editora
+      <th>Estoque Disponível
+      <th class="actions">Ações
+    <tbody>
+     $forall (Entity pid livro) <- livros
+      <tr>
+       <td> #{fromSqlKey pid}
+       <td> #{livroTitulo livro}
+       <td> #{livroAutor livro}
+       <td> #{livroEditora livro}
+       <td> #{livroEstoque livro}
+       <td class="actions">
+         <a class="btn btn-success btn-xs" href="visualizar.html">Visualizar
+         <a class="btn btn-warning btn-xs" href="editar.html">Editar
+         <a><form action=@{ApagarLivroR pid} method=post>
+          <input type="submit" class="btn btn-danger btn-xs" value="Excluir">
+ <div id="bottom" class="row">
+  <div class="col-md-12">
+   <ul class="pagination">
+    <li class="disabled"><a>&lt; Anterior</li>
+    <li class="disabled"><a>1</li>
+    <li><a href="#">2</li>
+    <li><a href="#">3</li>
+    <li class="next"><a href="#" rel="next">Próximo &gt;</li>
+

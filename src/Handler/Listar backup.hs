@@ -23,10 +23,30 @@ getListarR = do
     livros <- runDB $ selectList [] [Asc LivroTitulo]
     defaultLayout $ do 
         addStylesheet $ (StaticR css_bootstrap_css)
-        addScript $ StaticR js_jquery_min_js
-        addScript $ StaticR js_bootstrap_min_js
-        toWidget $ $(whamletFile "templates/listar.hamlet") 
-        
+        [whamlet|
+            <table>
+                <thead>
+                    <tr>
+                        <td> Id
+                        <td> Titulo 
+                        <td> Autor 
+                        <td> Editora
+                        <td> Estoque
+                        <td> 
+                
+                <tbody>
+                    $forall (Entity pid livro) <- livros
+                        <tr> 
+                            <td> #{fromSqlKey pid}
+                            <td> #{livroTitulo livro}
+                            <td> #{livroAutor livro}
+                            <td> #{livroEditora livro}
+                            <td> #{livroEstoque livro}
+                            <td> 
+                                <form action=@{ApagarLivroR pid} method=post>
+                                    <input type="submit" value="Deletar">
+                            
+        |]
         
         
 postApagarLivroR :: LivroId -> Handler Html 
