@@ -21,7 +21,7 @@
 	article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 		display: block;
 	}
-	
+
 	body {
 		line-height: 1;
 	}
@@ -1599,7 +1599,7 @@
 			}
 
 	#header-wrapper {
-		background: url("../images/banner.jpg") center center;
+		background: url("../../images/banner.jpg") center center;
 		background-size: cover;
 	}
 
