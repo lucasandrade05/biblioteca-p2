@@ -8,5 +8,5 @@
 /                                   HomeR           GET
 
 /livros/listar                      ListarR         GET
-
+/livros/cadastrar                   CadLivroR       GET POST
 /livros/#LivroId/Apagar             ApagarLivroR    POST

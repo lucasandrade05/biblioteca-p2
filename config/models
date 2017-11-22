@@ -1,10 +1,10 @@
 Livro json
     titulo          Text
     autor           Text
-    estoque         Int
-    ano             Date
     editora         Text
-    generoid        GeneroId    
+    genero          Text
+    ano             Int
+    estoque         Int
     deriving Show
     
 Genero json
