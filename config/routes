@@ -1,0 +1,12 @@
+/static StaticR Static appStatic
+
+/favicon.ico FaviconR GET
+/robots.txt RobotsR GET
+
+
+
+/                                   HomeR           GET
+
+/livros/listar                      ListarR         GET
+
+/livros/#LivroId/Apagar             ApagarLivroR    POST

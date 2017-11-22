@@ -1,0 +1,13 @@
+Livro json
+    titulo          Text
+    autor           Text
+    estoque         Int
+    ano             Date
+    editora         Text
+    generoid        GeneroId    
+    deriving Show
+    
+Genero json
+    titulo          Text
+    descricao       Text
+    
