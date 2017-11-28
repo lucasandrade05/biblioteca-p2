@@ -10,3 +10,5 @@
 /livros/listar                      ListarR         GET
 /livros/cadastrar                   CadLivroR       GET POST
 /livros/#LivroId/Apagar             ApagarLivroR    POST
+/buscar/#Text                       BuscarLivroR    GET
+/pesquisar/                         PesqLivroR      POST

@@ -4,6 +4,7 @@ Livro json
     editora         Text
     genero          Text
     ano             Int
+    sinopse         Text
     estoque         Int
     deriving Show
     

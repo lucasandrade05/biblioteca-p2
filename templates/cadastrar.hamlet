@@ -1,0 +1,42 @@
+<div id="main" class="container-fluid" style="margin-top: 50px">
+ <h3 class="page-header">Adicionar Livro
+
+<!--  <form action=@{CadLivroR} method=post enctype=#{enctype}>
+ <div class="row">
+ 
+   <div class="form-group col-md-4">
+    <label class="control-label" for="hident2">Titulo do Livro 
+     <input id="hident2" name="f1" type="text" class="form-control" required="" value="">
+ 
+   <div class="form-group col-md-4">
+    <label class="control-label" for="hident3">Autor 
+     <input id="hident3" name="f2" type="text" class="form-control" required="" value="">
+ 
+   <div class="form-group col-md-4">
+    <label class="control-label" for="hident4">Editora 
+     <input id="hident4" name="f3" type="text" class="form-control" required="" value="">
+ 
+   <div class="form-group col-md-4">
+    <label class="control-label" for="hident5">Genero 
+     <input id="hident5" name="f4" type="text" class="form-control" required="" value="">
+ 
+   <div class="form-group col-md-4">
+    <label class="control-label" for="hident6">Ano 
+     <input id="hident6" name="f5" type="number" step="1" class="form-control" required="" value="">
+ 
+   <div class="form-group col-md-4">
+    <label class="control-label" for="hident7">Sinopse 
+     <input id="hident7" name="f6" type="text" class="form-control" required="" value="">
+ 
+   <div class="form-group col-md-4">
+    <label class="control-label" for="hident8">Estoque 
+     <input id="hident8" name="f7" type="number" step="1" class="form-control" required="" value="">
+
+  <hr /> -->
+  <div id="actions" class="form-group col-md-4">
+   <div class="col-md-12">
+    
+    <form action=@{CadLivroR} method=post enctype=#{enctype}>
+     ^{widget}
+     <br>
+     <input type="submit" value="Cadastrar" class="btn btn-primary">

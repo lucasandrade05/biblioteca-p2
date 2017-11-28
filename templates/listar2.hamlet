@@ -6,14 +6,10 @@
    <h2>Livros
   <div class="col-sm-6">
    <div class="input-group h2">
-    <form action=@{PesqLivroR} method=post enctype=#{enctype}>
-     ^{widget}
-     <br>
-      <input type="submit" value="Pesquisar" class="btn btn-primary">
-    <!--<form action=@{BuscarLivroR } method=get>
-     <input name="" class="form-control" id="search" type="text" placeholder="Pesquisar Livros"> 
+    <form action=@{BuscarLivroR livro} method=get>
+     <input class="form-control" id=^{livro} type="text" placeholder="Pesquisar Livros">
      <span class="input-group-btn">
-      <button class="btn btn-primary" type="submit"> -->
+      <button class="btn btn-primary" type="submit">
        <span class="glyphicon glyphicon-search">
   <div class="col-sm-3">
    <a href=@{CadLivroR} class="btn btn-primary pull-right h2">Novo Livro
