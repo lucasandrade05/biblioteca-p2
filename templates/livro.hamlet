@@ -1,0 +1,40 @@
+<div id="main" class="container-fluid" style="margin-top: 50px">
+ <div id="top" class="row">
+  <div class="col-sm-3">
+   <h2>Livros
+  <div class="col-sm-6">
+   <div class="input-group h4">
+    <form .form-horizontal role=form action=@{PesqLivroR} method=post enctype=#{enctype}>
+     <table>
+      <tr>
+       <td>^{widget}
+       <td style="vertical-align:bottom; padding-left:5px"><input type="submit" value="Pesquisar" class="btn btn-primary"> <span class="glyphicon glyphicon-search">
+<div id="main" class="container-fluid">
+ <h3 class="page-header">Visualizar Livros #1
+ <div class="row">
+  <div class="col-md-4">
+   <p><strong>Código
+   <p>1001
+ <div class="col-md-4">
+  <p><strong>Nome do Livro
+  <p>Senhor dos Anéis
+ <div class="col-md-4">
+  <p><strong>Categoria
+  <p>Fantasia
+ <div class="col-md-4">
+  <p><strong>Descrição
+  <p>In vel sollicitudin leo, id fermentum augue.
+ <div class="col-md-4">
+  <p><strong>Autor
+  <p>J. R. R. Tolkien
+ <div class="col-md-4">
+  <p><strong>Preço
+  <p>129,90
+ <div class="col-md-4">
+  <p><strong>Estoque
+  <p>05
+ <div id="actions" class="row">
+  <div class="col-md-12">
+   <a href="index.html" class="btn btn-primary">Fechar
+   <a href="editar.html" class="btn btn-default">Editar
+   <a href="#" class="btn btn-default" data-toggle="modal" data-target="#delete-modal">Excluir
