@@ -27,7 +27,7 @@ data Pesquisa = Pesquisa
 
 formPesquisa :: Form Pesquisa
 formPesquisa = renderBootstrap $ Pesquisa
-    <$> areq textField "Pesquisar: " Nothing
+    <$> areq textField "" Nothing
     
 toTexto :: Pesquisa -> Text
 toTexto (Pesquisa x) = x

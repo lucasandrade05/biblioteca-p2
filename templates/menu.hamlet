@@ -16,16 +16,16 @@
          <a href=@{HomeR} style="text-decoration:none">Home</a></li>
      <li>
       <div class="dropdown">
-       <button class="dropbtn">Livros 
-         <div class="dropdown-content">
+       <button class="dropbtn">Livros
+       <div class="dropdown-content">
              <a href=@{CadLivroR}>Cadastrar Livro</a>
              <a href=@{ListarR}>Buscar Livros</a>
              <a href=#>Reservar Livro</a>
              <a href=#>Devolver Livro</a>
      <li>
       <div class="dropdown">
-       <button class="dropbtn">Clientes 
-         <div class="dropdown-content">
+       <button class="dropbtn">Clientes
+       <div class="dropdown-content">
              <a href=#>Cadastrar Cliente</a>
              <a href=#>Buscar Clientes</a>
              <a href=#>Ver Reservas</a>

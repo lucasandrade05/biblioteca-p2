@@ -5,16 +5,16 @@
   <div class="col-sm-3">
    <h2>Livros
   <div class="col-sm-6">
-   <div class="input-group h2">
-    <form action=@{PesqLivroR} method=post enctype=#{enctype}>
-     ^{widget}
-     <br>
-      <input type="submit" value="Pesquisar" class="btn btn-primary">
+   <div class="input-group h4">
+    <form .form-horizontal role=form action=@{PesqLivroR} method=post enctype=#{enctype}>
+     <table>
+      <tr>
+       <td>^{widget}
+       <td style="vertical-align:bottom; padding-left:5px"><input type="submit" value="Pesquisar" class="btn btn-primary"> <span class="glyphicon glyphicon-search">
     <!--<form action=@{BuscarLivroR } method=get>
      <input name="" class="form-control" id="search" type="text" placeholder="Pesquisar Livros"> 
      <span class="input-group-btn">
       <button class="btn btn-primary" type="submit"> -->
-       <span class="glyphicon glyphicon-search">
   <div class="col-sm-3">
    <a href=@{CadLivroR} class="btn btn-primary pull-right h2">Novo Livro
  <hr />
