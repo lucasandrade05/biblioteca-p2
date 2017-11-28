@@ -28,10 +28,10 @@ data Pesquisa = Pesquisa
 formPesquisa :: Form Pesquisa
 formPesquisa = renderBootstrap $ Pesquisa
         <$> areq textField FieldSettings{fsId=Just "search",
-                           fsLabel="Titulo: ",
+                           fsLabel="",
                            fsTooltip= Nothing,
                            fsName= Nothing,
-                           fsAttrs=[("class","form-control")]} Nothing
+                           fsAttrs=[("class","form-control"),("placeholder","Digite sua pesquisa")]} Nothing
     
 toTexto :: Pesquisa -> Text
 toTexto (Pesquisa x) = x
