@@ -19,8 +19,8 @@ Genero json
 
 Cliente json
     nome        Text
-    cpf         Text
-    email       Text
+    email         Text
+    cpf       Text
     EmailUnico  email
     
 Locacao json

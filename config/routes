@@ -7,12 +7,17 @@
 
 /                                   HomeR           GET
 
-/livros/listar                      ListarR         GET
+/livros/listar                      ListarLivroR    GET
 /livros/cadastrar                   CadLivroR       GET POST
 /livros/#LivroId/Apagar             ApagarLivroR    POST
 /livros/#LivroId/detalhes           DetalheLivroR   GET
-/buscar/#Text                       BuscarLivroR    GET
-/pesquisar/                         PesqLivroR      POST
+
 /arquivo                            ArquivoR        GET POST
 
 /clientes/listar                    ListarClienteR  GET
+/clientes/cadastrar                 CadClienteR     GET POST
+
+/pesquisar/livros/#Text             BuscarLivroR    GET
+/pesquisar/livros                   PesqLivroR      POST
+/pesquisar/clientes/#Text           BuscarClienteR  GET
+/pesquisar/clientes                 PesqClienteR    POST

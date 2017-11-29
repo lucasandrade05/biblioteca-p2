@@ -23,7 +23,7 @@
   <p>#{livroEstoque livro}
  <div id="actions" class="row">
   <div class="col-md-12">
-   <a href=@{ListarR} class="btn btn-primary">Voltar
+   <a href=@{ListarLivroR} class="btn btn-primary">Voltar
    <a href="editar.html" class="btn btn-default">Editar
     <a><form action=@{ApagarLivroR livroid} method=post>
      <button type="submit" class="btn btn-danger btn-xs" value="Excluir">

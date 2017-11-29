@@ -42,7 +42,7 @@
   <div class="col-sm-4">
   <div class="col-sm-2">
    <div class="input-group h4">
-    <form .form-horizontal role=form action=@{PesqLivroR} method=post enctype=#{enctype}>
+    <form .form-horizontal role=form action=@{PesqClienteR} method=post enctype=#{enctype}>
      <table>
       <tr>
        <td>^{widget2}

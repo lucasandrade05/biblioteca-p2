@@ -4,7 +4,7 @@
 {-# LANGUAGE QuasiQuotes #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE TypeFamilies, DeriveGeneric #-}
-module Handler.Listar where
+module Handler.Livro where
 
 import Import
 import Database.Persist.Postgresql
@@ -46,7 +46,7 @@ formLivro = renderBootstrap $ Livro
                            fsTooltip= Nothing,
                            fsName= Nothing,
                            fsAttrs=[("class","form-control"),("placeholder","EX: 3"),("style","display:inline-block")]} Nothing    
-    
+
     
 data Pesquisa = Pesquisa
     { pesquisa          :: Text
@@ -65,8 +65,8 @@ toTexto (Pesquisa x) = x
 
 
 
-getListarR :: Handler Html
-getListarR = do 
+getListarLivroR :: Handler Html
+getListarLivroR = do 
     (widget2, enctype) <- generateFormPost formPesquisa
     livros <- runDB $ selectList [] [Asc LivroAutor, Asc LivroTitulo]
     defaultLayout $ do 
@@ -75,7 +75,7 @@ getListarR = do
         addScript $ StaticR js_bootstrap_min_js
         let nomePagina = "Livros" :: Text
         toWidget $ $(whamletFile "templates/menu.hamlet")
-        toWidget $ $(whamletFile "templates/listar.hamlet") 
+        toWidget $ $(whamletFile "templates/listarlivro.hamlet") 
         
         
 postApagarLivroR :: LivroId -> Handler Html 
@@ -83,7 +83,7 @@ postApagarLivroR pid = do
     _ <- runDB $ get404 pid  -- EH UM SELECT(procura o registro),
     --  SE ACHAR, PROSSEGUE, SE N ACHAR, BARRA O RESTANTE JOGANDO STATUS 404
     runDB (delete pid)
-    redirect ListarR
+    redirect ListarLivroR
     
 getCadLivroR :: Handler Html
 getCadLivroR = do 
@@ -95,7 +95,7 @@ getCadLivroR = do
         addScript $ StaticR js_bootstrap_min_js
         let nomePagina = "Adicionar Livro"  :: Text
         toWidget $ $(whamletFile "templates/menu.hamlet")
-        toWidget $ $(whamletFile "templates/cadastrar.hamlet") 
+        toWidget $ $(whamletFile "templates/cadastrarlivro.hamlet") 
 
 postCadLivroR :: Handler Html
 postCadLivroR = do 
@@ -103,7 +103,7 @@ postCadLivroR = do
     case result of
         FormSuccess livro -> do
             runDB $ insert livro
-            redirect ListarR
+            redirect ListarLivroR
         _ -> do
             setMessage $ [shamlet| Dados invalidos! |] 
             redirect CadLivroR
@@ -134,7 +134,7 @@ postPesqLivroR = do
             redirect (BuscarLivroR livro)
         _ -> do
             setMessage $ [shamlet| Dados invalidos! |] 
-            redirect ListarR
+            redirect ListarLivroR
             
 getBuscarLivroR :: Text -> Handler Html
 getBuscarLivroR livro = do
@@ -149,7 +149,7 @@ getBuscarLivroR livro = do
         addScript $ StaticR js_bootstrap_min_js
         let nomePagina = "Resultados da busca:"  :: Text
         toWidget $ $(whamletFile "templates/menu.hamlet")
-        toWidget $ $(whamletFile "templates/listar.hamlet") 
+        toWidget $ $(whamletFile "templates/listarlivro.hamlet") 
         [whamlet| 
-            <div class="col-sm-6"> <i>Exibindo resultados para "#{livro}" 
+            <div class="col-sm-6"> <i>Exibindo resultados para "#{livro}" em Livros
         |]
