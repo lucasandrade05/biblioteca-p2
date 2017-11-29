@@ -68,12 +68,29 @@ postCadClienteR = do
             runDB $ insert cliente
             redirect ListarClienteR
         _ -> do
-            setMessage $ [shamlet| Dados invalidos! |] 
+            --setMessage $ [shamlet| Dados invalidos! |] 
             redirect CadClienteR        
         
+postApagarClienteR :: ClienteId -> Handler Html 
+postApagarClienteR pid = do 
+    _ <- runDB $ get404 pid  -- EH UM SELECT(procura o registro),
+    --  SE ACHAR, PROSSEGUE, SE N ACHAR, BARRA O RESTANTE JOGANDO STATUS 404
+    runDB (delete pid)
+    redirect ListarClienteR
         
-        
-        
+
+getDetalheClienteR :: ClienteId -> Handler Html
+getDetalheClienteR cliid = do
+    (widget2, enctype) <- generateFormPost formPesquisa
+    cliente <- runDB $ get404 cliid
+    defaultLayout $ do 
+        addStylesheet $ (StaticR css_bootstrap_css)
+        addScript $ StaticR js_jquery_min_js
+        addScript $ StaticR js_bootstrap_min_js
+        let nomePagina = "# Histórico de Locações - " ++ (clienteNome cliente)  :: Text
+        toWidget $ $(whamletFile "templates/menucli.hamlet")
+        toWidget $ $(whamletFile "templates/cliente.hamlet")
+
 postPesqClienteR :: Handler Html
 postPesqClienteR = do 
     ((result,_),_) <- runFormPost formPesquisa

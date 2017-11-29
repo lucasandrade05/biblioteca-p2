@@ -19,12 +19,12 @@ Genero json
 
 Cliente json
     nome        Text
-    email         Text
-    cpf       Text
+    email       Text
+    cpf         Text
     EmailUnico  email
     
 Locacao json
     cliid       ClienteId
     livid       LivroId
-    diamesano   Text
+    diamesano   Day
     

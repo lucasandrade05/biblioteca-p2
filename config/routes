@@ -16,6 +16,8 @@
 
 /clientes/listar                    ListarClienteR  GET
 /clientes/cadastrar                 CadClienteR     GET POST
+/clientes/#ClienteId/Apagar         ApagarClienteR  POST
+/clientes/#ClienteId/detalhes       DetalheClienteR GET
 
 /pesquisar/livros/#Text             BuscarLivroR    GET
 /pesquisar/livros                   PesqLivroR      POST

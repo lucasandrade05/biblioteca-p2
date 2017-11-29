@@ -19,9 +19,9 @@
        <td> #{clienteCpf cliente}
        <td>
        <td class="forms" style="display:inline-block"><center>
-          <form style="display:inline-block" action="#" method=get><input type="submit" class="btn btn-success" value="Visualizar"></button></form>
+          <form style="display:inline-block" action=@{DetalheClienteR pid} method=get><input type="submit" class="btn btn-success" value="Visualizar"></button></form>
           <form style="display:inline-block" action="#" method=get><input type="submit" class="btn btn-warning" value="Editar"></button></form>
-          <form style="display:inline-block" action="#" method=post><input type="submit" class="btn btn-danger" value="Excluir"></button></form>
+          <form style="display:inline-block" action=@{ApagarClienteR pid} method=post><input type="submit" class="btn btn-danger" value="Excluir"></button></form>
  <div id="bottom" class="row">
   <div class="col-md-12">
    <ul class="pagination">
