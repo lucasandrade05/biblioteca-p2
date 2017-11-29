@@ -6,8 +6,13 @@ Livro json
     ano             Int
     sinopse         Text
     estoque         Int
+    UniqueLivro     titulo
     deriving Show
-    
+
+Capa json
+    nomeimagem      Text
+    deriving Show
+
 Genero json
     titulo          Text
     descricao       Text

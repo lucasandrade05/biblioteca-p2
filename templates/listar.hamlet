@@ -1,20 +1,4 @@
-<div id="main" class="container-fluid" style="margin-top: 50px">
- <div id="top" class="row">
-  <div class="col-sm-3">
-   <h2>Livros
-  <div class="col-sm-6">
-   <div class="input-group h4">
-    <form .form-horizontal role=form action=@{PesqLivroR} method=post enctype=#{enctype}>
-     <table>
-      <tr>
-       <td>^{widget}
-       <td style="vertical-align:bottom; padding-left:5px"><input type="submit" value="Pesquisar" class="btn btn-primary"> <span class="glyphicon glyphicon-search">
-    <!--<form action=@{BuscarLivroR } method=get>
-     <input name="" class="form-control" id="search" type="text" placeholder="Pesquisar Livros"> 
-     <span class="input-group-btn">
-      <button class="btn btn-primary" type="submit"> -->
-  <div class="col-sm-3">
-   <a href=@{CadLivroR} class="btn btn-primary pull-right h2">Novo Livro
+<hr />
  <div id="list" class="row">
   <div class="table-responsive col-md-12">
    <table class="table table-striped" cellspacing="0" cellpadding="0">
@@ -25,7 +9,7 @@
       <th>Autor
       <th>Editora
       <th><center>Estoque Disponível
-      <th class="actions"><center>Ações
+      <th class="forms"><center>Ações
     <tbody>
      $forall (Entity pid livro) <- livros
       <tr>
@@ -34,11 +18,10 @@
        <td> #{livroAutor livro}
        <td> #{livroEditora livro}
        <td><center>#{livroEstoque livro}
-       <td class="actions"><center>
-         <a class="btn btn-success btn-xs" href="visualizar.html">Visualizar
-         <a class="btn btn-warning btn-xs" href="editar.html">Editar
-         <a><form action=@{ApagarLivroR pid} method=post>
-          <input type="submit" class="btn btn-danger btn-xs" value="Excluir">
+       <td class="forms"><center>
+          <form style="display:inline-block" action=@{DetalheLivroR pid} method=get><input type="submit" class="btn btn-success" value="Visualizar"></button></form>
+          <form style="display:inline-block" action=@{DetalheLivroR pid} method=get><input type="submit" class="btn btn-warning" value="Editar"></button></form>
+          <form style="display:inline-block" action=@{ApagarLivroR pid} method=post><input type="submit" class="btn btn-danger" value="Excluir"></button></form>
  <div id="bottom" class="row">
   <div class="col-md-12">
    <ul class="pagination">

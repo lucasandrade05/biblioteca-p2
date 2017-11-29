@@ -13,3 +13,4 @@
 /livros/#LivroId/detalhes           DetalheLivroR   GET
 /buscar/#Text                       BuscarLivroR    GET
 /pesquisar/                         PesqLivroR      POST
+/arquivo                            ArquivoR        GET POST

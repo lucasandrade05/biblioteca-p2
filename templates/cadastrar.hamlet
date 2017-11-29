@@ -1,6 +1,4 @@
-<div id="main" class="container-fluid" style="margin-top: 50px">
- <h3 class="page-header">Adicionar Livro
-
+<hr />
 <!--  <form action=@{CadLivroR} method=post enctype=#{enctype}>
  <div class="row">
  
@@ -33,7 +31,7 @@
      <input id="hident8" name="f7" type="number" step="1" class="form-control" required="" value="">
 
   <hr /> -->
-  <div id="actions" class="form-group col-md-4">
+  <div id="actions" class="form-group col-md-5" style="Left:25%">
    <div class="col-md-12">
     
     <form action=@{CadLivroR} method=post enctype=#{enctype}>
