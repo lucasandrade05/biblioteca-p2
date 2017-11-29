@@ -1,0 +1,30 @@
+<hr />
+ <div id="list" class="row">
+  <div class="table-responsive col-md-12">
+   <table class="table table-striped" cellspacing="0" cellpadding="0">
+    <thead>
+     <tr>
+      <th class="col-md-2">Codigo
+      <th>Nome
+      <th>E-mail
+      <th>CPF
+      <th class="forms"><center>Ações
+    <tbody>
+     $forall (Entity pid cliente) <- clientes
+      <tr>
+       <td> #{fromSqlKey pid}
+       <td> #{clienteNome cliente}
+       <td> #{clienteEmail cliente}
+       <td> #{clienteCpf cliente}
+       <td class="forms"><center>
+          <form style="display:inline-block" action="#" method=get><input type="submit" class="btn btn-success" value="Visualizar"></button></form>
+          <form style="display:inline-block" action="#" method=get><input type="submit" class="btn btn-warning" value="Editar"></button></form>
+          <form style="display:inline-block" action="#" method=post><input type="submit" class="btn btn-danger" value="Excluir"></button></form>
+ <div id="bottom" class="row">
+  <div class="col-md-12">
+   <ul class="pagination">
+    <li class="disabled"><a>&lt; Anterior
+    <li class="disabled"><a>1
+    <li><a href="#">2
+    <li><a href="#">3
+    <li class="next"><a href="#" rel="next">Próximo &gt;</li>

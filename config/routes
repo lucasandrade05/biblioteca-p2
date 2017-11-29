@@ -14,3 +14,5 @@
 /buscar/#Text                       BuscarLivroR    GET
 /pesquisar/                         PesqLivroR      POST
 /arquivo                            ArquivoR        GET POST
+
+/clientes/listar                    ListarClienteR  GET

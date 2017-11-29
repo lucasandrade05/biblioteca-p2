@@ -16,4 +16,15 @@ Capa json
 Genero json
     titulo          Text
     descricao       Text
+
+Cliente json
+    nome        Text
+    cpf         Text
+    email       Text
+    EmailUnico  email
+    
+Locacao json
+    cliid       ClienteId
+    livid       LivroId
+    diamesano   Text
     

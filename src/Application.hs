@@ -40,6 +40,7 @@ import Handler.Common
 import Handler.Listar
 import Handler.Index
 import Handler.Arquivo
+import Handler.Cliente
 
 -- This line actually creates our YesodDispatch instance. It is the second half
 -- of the call to mkYesodData which occurs in Foundation.hs. Please see the
