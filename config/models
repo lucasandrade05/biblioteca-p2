@@ -26,5 +26,4 @@ Cliente json
 Locacao json
     cliid       ClienteId
     livid       LivroId
-    diamesano   Day
     

@@ -51,7 +51,7 @@ getListarClienteR = do
 getCadClienteR :: Handler Html
 getCadClienteR = do 
      (widget, enctype) <- generateFormPost formCliente
-     (widget2, enctype) <- generateFormPost formPesquisa
+     (widget2, enctype) <- generateFormPost formPesquisaCliente
      defaultLayout $ do
         addStylesheet $ (StaticR css_bootstrap_css)
         addScript $ StaticR js_jquery_min_js

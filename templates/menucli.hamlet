@@ -18,7 +18,7 @@
       <div class="dropdown">
        <button class="dropbtn">Livros
        <div class="dropdown-content">
-             <a href=@{CadLivroR}>Cadastrar Livro</a>
+             <a href=@{CadLivroR}>Incluir Livro</a>
              <a href=@{ListarLivroR}>Buscar Livros</a>
              <a href=#>Reservar Livro</a>
              <a href=#>Devolver Livro</a>

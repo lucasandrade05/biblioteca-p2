@@ -31,10 +31,35 @@
      <input id="hident8" name="f7" type="number" step="1" class="form-control" required="" value="">
 
   <hr /> -->
+ <div id="cadlivro">
   <div id="actions" class="form-group col-md-5" style="Left:25%">
    <div class="col-md-12">
-    
-    <form action=@{CadLivroR} method=post enctype=#{enctype}>
-     ^{widget}
-     <br>
-     <input type="submit" value="Cadastrar" class="btn btn-primary">
+      <form action=@{CadLivroR} method=post enctype=#{enctype}>
+       ^{widget}
+       <br>
+         <input type="submit" value="Cadastrar" class="btn btn-primary">
+  <div class="col-md-3" style="Left:25%">       
+         <button type="button" class="btn btn-info" onclick="ativainclui()">Alterar Estoque</form>
+         
+ <div id="altlivro">
+  <div id="actions" class="form-group col-md-5" style="Left:25%">
+   <div class="col-md-12">        
+      <form action=@{AlteraEstoqueR} method=post enctype=#{enctype}>
+       ^{widget3}
+       <br>
+         <input type="submit" value="Cadastrar" class="btn btn-primary">
+  <div class="col-md-3" style="Left:25%">
+   <button type="button" class="btn btn-info" onclick="ativacadastra()">Cadastrar Novo</form>
+        
+        
+      <script>
+       function ativainclui() {
+        document.getElementById('altlivro').style.display = 'block';
+        document.getElementById('cadlivro').style.display = 'none';   
+        }
+       function ativacadastra() {
+        document.getElementById('cadlivro').style.display = 'block';
+        document.getElementById('altlivro').style.display = 'none';
+        }
+        ativainclui();
+ 

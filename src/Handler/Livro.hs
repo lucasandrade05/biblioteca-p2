@@ -8,6 +8,7 @@ module Handler.Livro where
 
 import Import
 import Database.Persist.Postgresql
+import Text.Julius
 
 formLivro :: Form Livro
 formLivro = renderBootstrap $ Livro
@@ -63,6 +64,10 @@ formPesquisa = renderBootstrap $ Pesquisa
 toTexto :: Pesquisa -> Text
 toTexto (Pesquisa x) = x
 
+livrosLista = do
+       entidades <- runDB $ selectList [] [Asc LivroTitulo] 
+       optionsPairs $ fmap (\ent -> (livroTitulo $ entityVal ent, entityKey ent)) entidades
+       
 
 
 getListarLivroR :: Handler Html
@@ -89,6 +94,8 @@ getCadLivroR :: Handler Html
 getCadLivroR = do 
      (widget, enctype) <- generateFormPost formLivro
      (widget2, enctype) <- generateFormPost formPesquisa
+     (widget3, enctype) <- generateFormPost formAltera
+     livros <- runDB $ selectList [] [Asc LivroAutor, Asc LivroTitulo]
      defaultLayout $ do
         addStylesheet $ (StaticR css_bootstrap_css)
         addScript $ StaticR js_jquery_min_js
@@ -96,6 +103,7 @@ getCadLivroR = do
         let nomePagina = "Adicionar Livro"  :: Text
         toWidget $ $(whamletFile "templates/menu.hamlet")
         toWidget $ $(whamletFile "templates/cadastrarlivro.hamlet") 
+        
 
 postCadLivroR :: Handler Html
 postCadLivroR = do 
@@ -135,7 +143,37 @@ postPesqLivroR = do
         _ -> do
             setMessage $ [shamlet| Dados invalidos! |] 
             redirect ListarLivroR
-            
+
+data Altera = Altera
+   {    nome :: LivroId
+    ,   qtd  :: Int }
+
+formAltera :: Form Altera
+formAltera = renderBootstrap $ Altera
+    <$> areq (selectField livrosLista) "Livro:  " Nothing
+    <*> areq intField  "Quantidade: " Nothing
+
+alteraId :: Altera -> LivroId
+alteraId(Altera a b) = a
+
+alteraQtd :: Altera -> Int
+alteraQtd(Altera a b) = b
+
+postAlteraEstoqueR :: Handler Html
+postAlteraEstoqueR = do
+    ((result,_),_) <- runFormPost formAltera
+    case result of
+        FormSuccess alterar -> do
+            let pid = alteraId(alterar)
+            runDB $ update pid [LivroEstoque +=. alteraQtd(alterar) ]
+            redirect (DetalheLivroR pid)
+        _ -> do
+            setMessage $ [shamlet| Dados invalidos! |] 
+            redirect CadLivroR
+    --_ <- runDB $ get404 livid
+    --runDB $ update livid [LivroEstoque +=. qtd ]
+    --redirect (DetalheLivroR livid)
+    
 getBuscarLivroR :: Text -> Handler Html
 getBuscarLivroR livro = do
     (widget2, enctype) <- generateFormPost formPesquisa
@@ -153,3 +191,4 @@ getBuscarLivroR livro = do
         [whamlet| 
             <div class="col-sm-6"> <i>Exibindo resultados para "#{livro}" em Livros
         |]
+        

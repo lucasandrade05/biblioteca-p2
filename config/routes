@@ -11,6 +11,7 @@
 /livros/cadastrar                   CadLivroR       GET POST
 /livros/#LivroId/Apagar             ApagarLivroR    POST
 /livros/#LivroId/detalhes           DetalheLivroR   GET
+/livros/alterar                     AlteraEstoqueR  POST
 
 /arquivo                            ArquivoR        GET POST
 
@@ -23,3 +24,6 @@
 /pesquisar/livros                   PesqLivroR      POST
 /pesquisar/clientes/#Text           BuscarClienteR  GET
 /pesquisar/clientes                 PesqClienteR    POST
+
+/reserva/alugar                     AlugarR         GET
+/reserva/alugar/sacola              AlugarSacolaR   POST
