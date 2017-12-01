@@ -1,0 +1,94 @@
+<!--      <div class="control-group">
+        <label for="single" class="control-label">Select2 single select
+        <div class="controls">
+          <select id="single" class="select2 input-default">
+            <option></option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+<hr />
+
+<div id="livros_titulos">
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <div class="input-group">
+          <select class="selectpicker" data-show-subtext="true" data-live-search="true" placeholder="Digite ou selecione uma das opcoes">
+                    <option data-subtext="Rep California">Tom Foolery
+                    <option data-subtext="Sen California">Bill Gordon
+                    <option data-subtext="Sen Massacusetts">Elizabeth Warren
+                    <option data-subtext="Rep Alabama">Mario Flores
+                    <option data-subtext="Rep Alaska">Don Young
+                    <option data-subtext="Rep California" disabled="disabled">Marvin Martinez
+          <div class="input-group-btn">
+            <button class="btn btn-success" type="button"  onclick="livros_titulos();"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
+    <br>
+  
+-->
+
+<hr />
+ <div id="altlivro">
+  <div id="actions" class="form-group col-md-5" style="Left:25%">
+   <div class="col-md-12">        
+      <form action="#" method=post enctype=#{enctype}>
+       <div name="count" id="a" />
+        <select class="selectpicker" data-show-subtext="true" data-live-search="true" placeholder="Digite ou selecione uma das opcoes">
+         $forall (Entity pid livro) <- livros
+          <option value=#{fromSqlKey pid}>#{livroTitulo livro}</option>
+        <button type="button" onclick="addlinha()" id="add[]"><span class="glyphicon glyphicon-plus" aria-hidden="true"></button><button type="button" class="btn btn-danger" onclick="remlinha()" id="rem"><span class="glyphicon glyphicon-minus" aria-hidden="true"></button>
+        <br>
+       <input type="submit" value="Alterar" class="btn btn-primary">
+
+
+
+
+<div class="container">
+  <div class="row">
+    <input type="hidden" name="count" value="1" />
+        <div class="control-group" id="fields">
+            <label class="control-label" for="field1">Nice Multiple Form Fields</label>
+            <div class="controls" id="profs"> 
+                <form class="input-append">
+                    <div id="field"><input autocomplete="off" class="input" id="field1" name="prof1" type="text" placeholder="Type something" data-items="8"/><button id="b1" class="btn add-more" type="button">+</button>
+            <br>
+            <small>Press + to add another form field :)</small>
+
+
+<script>
+        var a = 1;
+      function add() {
+        a++;
+        }
+      function ativacadastra() {
+        document.getElementById('cadlivro').style.display = 'block';
+        document.getElementById('altlivro').style.display = 'none';
+        };
+        
+ document.ready(function(){
+    var next = 1;
+    ".add-more".click(function(e){
+        e.preventDefault();
+        var addto = "#field" + next;
+        var addRemove = "#field" + (next);
+        next = next + 1;
+        var newIn = '<input autocomplete="off" class="input form-control" id="field' + next + '" name="field' + next + '" type="text">';
+        var newInput = newIn;
+        var removeBtn = '<button id="remove' + (next - 1) + '" class="btn btn-danger remove-me" >-</button></div><div id="field">';
+        var removeButton = removeBtn;
+        addto.after(newInput);
+        addRemove.after(removeButton);
+        ("#field" + next).attr('data-source',addto.attr('data-source'));
+        ("#count").val(next);  
+        
+            '.remove-me'.click(function(e){
+                e.preventDefault();
+                var fieldNum = this.id.charAt(this.id.length-1);
+                var fieldID = "#field" + fieldNum;
+                this.remove();
+                fieldID.remove();
+            });
+    });
+    
+
+    
+});</script>

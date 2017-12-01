@@ -150,8 +150,16 @@ data Altera = Altera
 
 formAltera :: Form Altera
 formAltera = renderBootstrap $ Altera
-    <$> areq (selectField livrosLista) "Livro:  " Nothing
-    <*> areq intField  "Quantidade: " Nothing
+    <$> areq (selectField livrosLista) FieldSettings{fsId=Just "li",
+                           fsLabel="Livro",
+                           fsTooltip= Nothing,
+                           fsName= Nothing,
+                           fsAttrs=[("class","form-control"),("placeholder","EX: Policarpo Quaresma")]} Nothing
+    <*> areq intField  FieldSettings{fsId=Just "qt",
+                           fsLabel="Quantidade",
+                           fsTooltip= Nothing,
+                           fsName= Nothing,
+                           fsAttrs=[("class","form-control"),("placeholder","EX: 3")]} Nothing
 
 alteraId :: Altera -> LivroId
 alteraId(Altera a b) = a

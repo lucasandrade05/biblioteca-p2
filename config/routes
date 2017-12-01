@@ -26,4 +26,8 @@
 /pesquisar/clientes                 PesqClienteR    POST
 
 /reserva/alugar                     AlugarR         GET
-/reserva/alugar/sacola              AlugarSacolaR   POST
+/reserva/alugar/#AlugarId           AlugarSacolaR   GET POST
+
+/login                              LoginR          GET POST
+/logout                             LogoutR         POST
+/admin                              AdminR          GET

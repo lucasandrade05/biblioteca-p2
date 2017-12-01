@@ -23,7 +23,15 @@ Cliente json
     cpf         Text
     EmailUnico  email
     
-Locacao json
+Alugar json
     cliid       ClienteId
     livid       LivroId
     
+Usuario json
+    nome        Text
+    login       Text
+    cpf         Text
+    senha       Text
+    email       Text
+    UniqueEmail email
+    UniqueLogin login

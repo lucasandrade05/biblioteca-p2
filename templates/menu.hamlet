@@ -20,7 +20,7 @@
        <div class="dropdown-content">
              <a href=@{CadLivroR}>Incluir Livro</a>
              <a href=@{ListarLivroR}>Buscar Livros</a>
-             <a href=#>Reservar Livro</a>
+             <a href=@{AlugarR}>Reservar Livro</a>
              <a href=#>Devolver Livro</a>
      <li>
       <div class="dropdown">
@@ -40,7 +40,7 @@
   <div class="col-sm-6">
    <h2>#{nomePagina}
   <div class="col-sm-4">
-  <div class="col-sm-2">
+  <div class="col-sm-2" id="pesq">
    <div class="input-group h4">
     <form .form-horizontal role=form action=@{PesqLivroR} method=post enctype=#{enctype}>
      <table>
