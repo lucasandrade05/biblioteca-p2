@@ -1,24 +1,2 @@
-<body class="homepage">
- <div #page-wrapper> #
-  <!-- Header -->
-  <div #header-wrapper class=wrapper>
-   <div #header>					
-    <div #logo>
-     <img src=@{StaticR images_biblioteca_png} alt="Biblioteca" width=250 height=250>
-      <!-- Nav -->
-    <nav #nav>
-     <ul>
-      <li class=current><a href=@{HomeR}>Home</a>
-      <li>
-       <a href=#>Livros
-       <ul>
-        <li><a href=#>Cadastrar Livro</a>
-        <li><a href=#>Buscar Livro</a>
-        <li><a href=#>Editar Livro</a>
-        <li><a href=#>Reservar Livro</a>
-      <li>
-       <a href=#>Cliente
-       <ul>
-        <li><a href=#>Novo Cliente</a>
-        <li><a href=#>Alterar Cliente</a>
-        <li><a href=#>Buscar Cliente</a>
+<hr />
+ 

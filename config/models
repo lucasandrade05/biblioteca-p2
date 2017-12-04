@@ -4,12 +4,11 @@ Livro
     editora         Text
     genero          Text
     ano             Int
-    sinopse         Text
+    sinopse         Textarea
     estoque         Int
     disponivel      Int Maybe
     UniqueLivro     titulo
     deriving Show
-
 
 
 Capa 
@@ -35,9 +34,7 @@ Alugar
     dia         Day
     
 Usuario 
-    nome         Text
     login        Text
-    cpf          Text
     senha        Text
     email        Text
     EmailUsuario email

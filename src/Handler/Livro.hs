@@ -37,7 +37,7 @@ formLivro = renderBootstrap $ Livro
                            fsTooltip= Nothing,
                            fsName= Nothing,
                            fsAttrs=[("class","form-control"),("placeholder","EX: 1995"),("style","display:inline-block")]}  Nothing
-    <*> areq textField FieldSettings{fsId=Just "campo6",
+    <*> areq textareaField FieldSettings{fsId=Just "campo6",
                            fsLabel="Sinopse",
                            fsTooltip= Nothing,
                            fsName= Nothing,
@@ -208,4 +208,3 @@ getBuscarLivroR livro = do
         [whamlet| 
             <div class="col-sm-6"> <i>Exibindo resultados para "#{livro}" em Livros
         |]
-        

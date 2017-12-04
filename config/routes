@@ -33,3 +33,4 @@
 /login                              LoginR          GET POST
 /logout                             LogoutR         POST
 /admin                              AdminR          GET
+/cadastrar                          CadUserR        POST
