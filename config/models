@@ -15,8 +15,9 @@ Estoque
     deriving Show
 
 Capa 
-    nomeimagem      Text
+    nomeimagem      String
     idlivro         LivroId
+    UniqueImg       nomeimagem
     deriving Show
 
 Genero 

@@ -123,7 +123,7 @@ getDetalheLivroR livroid = do
     (widget2, enctype) <- generateFormPost formPesquisa
     --livros <- runDB $ selectList [] [Asc LivroAutor, Asc LivroTitulo]
     livro <- runDB $ get404 livroid
-    imagem <- runDB $ selectList [CapaIdlivro ==. livroid][]
+    imagem <- runDB $ selectFirst [CapaIdlivro ==. livroid][]
     defaultLayout $ do 
         addStylesheet $ (StaticR css_bootstrap_css)
         addScript $ StaticR js_jquery_min_js
