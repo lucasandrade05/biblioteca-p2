@@ -6,13 +6,11 @@ Livro
     ano             Int
     sinopse         Text
     estoque         Int
+    disponivel      Int Maybe
     UniqueLivro     titulo
     deriving Show
 
-Estoque 
-    livro           LivroId
-    disponivel      Int
-    deriving Show
+
 
 Capa 
     nomeimagem      String
@@ -33,6 +31,8 @@ Cliente
 Alugar 
     cliid       ClienteId
     livid       LivroId
+    alugado     Bool
+    dia         Day
     
 Usuario 
     nome         Text

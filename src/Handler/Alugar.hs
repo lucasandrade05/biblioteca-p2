@@ -10,6 +10,7 @@ import Control.Monad
 import Import
 import Network.HTTP.Types.Status
 import Database.Persist.Postgresql
+import Data.Time.Calendar
 import Handler.Livro
 
 clientesLista = do
@@ -19,27 +20,33 @@ clientesLista = do
 --sacolaLista cliid = do
 --       entidades <- runDB $ selectList [AlugarCliid =. cliid] [Asc ClienteCpf] 
 --       entidades2 <- optionsPairs $ fmap (\ent -> (AlugarLivid $ entityVal ent, entityKey ent)) entidades
-       
+
+livrosListaAlug = do
+       entidades <- runDB $ selectList [LivroDisponivel >. (Just 0)] [Asc LivroTitulo] 
+       optionsPairs $ fmap (\ent -> (livroTitulo $ entityVal ent, entityKey ent)) entidades
 
 
-formAlugar :: Form Alugar
-formAlugar = renderBootstrap $ Alugar
+formAlugar :: Bool -> Form Alugar
+formAlugar alugado = renderBootstrap $ Alugar
     <$> areq (selectField clientesLista) FieldSettings{fsId=Just "cli",
-                           fsLabel="Cliente",
+                           fsLabel="Cliente :",
                            fsTooltip= Nothing,
                            fsName= Nothing,
                            fsAttrs=[("class","form-control"),("placeholder","EX: João Alves")]} Nothing
-    <*> areq (selectField livrosLista) FieldSettings{fsId=Just "li",
-                           fsLabel="Livro",
+    <*> areq (selectField livrosListaAlug) FieldSettings{fsId=Just "li",
+                           fsLabel="Livro :",
                            fsTooltip= Nothing,
                            fsName= Nothing,
                            fsAttrs=[("class","form-control"),("placeholder","EX: Policarpo Quaresma")]} Nothing
+    <*> pure alugado
+    <*> areq dayField "Em: " Nothing
+    
     
 
 getAlugarR :: Handler Html
 getAlugarR = do
     (widget2, enctype) <- generateFormPost formPesquisa
-    (widget, enctype) <- generateFormPost formAlugar
+    (widget, enctype) <- generateFormPost (formAlugar False)
     defaultLayout $ do
         addStylesheet $ (StaticR css_bootstrap_css)
         addScript $ StaticR js_jquery_min_js
@@ -54,11 +61,18 @@ getAlugarR = do
     
 postRegistraLocarR :: Handler Html
 postRegistraLocarR = do
-    ((result,_),_) <- runFormPost formAlugar
+    ((result,_),_) <- runFormPost (formAlugar True)
     case result of
         FormSuccess alugar -> do 
-            runDB $ insert alugar
-            redirect (AlugarSacolaR (alugarCliid alugar))
+            let idLiv = (alugarLivid alugar) :: LivroId
+            estdisp <- runDB $ get404 idLiv
+            if ((livroDisponivel estdisp) > (Just 0)) then do
+                runDB $ insert alugar
+                runDB $ update idLiv [LivroDisponivel -=. (Just 1)] 
+                redirect (AlugarSacolaR (alugarCliid alugar))
+            else do
+                defaultLayout $ do
+                    [whamlet| <script>alert("Estamos sem estoque disponivel para este livro no momento.");</script>|]
         _ -> do
             setMessage $ [shamlet| Dados invalidos! |] 
             redirect AlugarR
@@ -69,8 +83,8 @@ postRegistraLocarR = do
 getAlugarSacolaR :: ClienteId -> Handler Html
 getAlugarSacolaR idCli = do
     (widget2, enctype) <- generateFormPost formPesquisa
-    (widget, enctype) <- generateFormPost formAlugar
-    listaalug <- runDB $ selectList [AlugarCliid ==. idCli] []
+    (widget, enctype) <- generateFormPost (formAlugar False)
+    listaalug <- runDB $ selectList [AlugarCliid ==. idCli , AlugarAlugado ==. True] []
     cliente <- runDB $ get404 idCli
     defaultLayout $ do 
         addStylesheet $ (StaticR css_bootstrap_css)
@@ -93,6 +107,7 @@ livById idAlug = do
           <td> #{livroAutor livro}
           <td> #{livroEditora livro}
           <td class="forms"><center>
-            <form style="display:inline-block" action="#" method=get><input type="submit" class="btn btn-success" value="Visualizar"></button></form>
+            <form style="display:inline-block" action=@{DetalheLivroR idLiv} method=get><input type="submit" class="btn btn-success" value="Visualizar"></button></form>
             <form style="display:inline-block" action="#" method=post><input type="submit" class="btn btn-danger" value="Devolver"></button></form>
     |]
+    

@@ -47,6 +47,7 @@ formLivro = renderBootstrap $ Livro
                            fsTooltip= Nothing,
                            fsName= Nothing,
                            fsAttrs=[("class","form-control"),("placeholder","EX: 3"),("style","display:inline-block")]}  Nothing
+    <*> aopt hiddenField "" Nothing
     
                            
 data Pesquisa = Pesquisa
@@ -68,8 +69,6 @@ livrosLista = do
        entidades <- runDB $ selectList [] [Asc LivroTitulo] 
        optionsPairs $ fmap (\ent -> (livroTitulo $ entityVal ent, entityKey ent)) entidades
        
-
-
 getListarLivroR :: Handler Html
 getListarLivroR = do 
     (widget2, enctype) <- generateFormPost formPesquisa
@@ -112,6 +111,7 @@ postCadLivroR = do
     case result of
         FormSuccess livro -> do
             livid <- runDB $ insert livro
+            _ <- runDB $ update livid [LivroDisponivel =. (Just (livroEstoque livro))]
             redirect (ArquivoR livid)
         _ -> do
             setMessage $ [shamlet| Dados invalidos! |] 
@@ -169,6 +169,12 @@ alteraId(Altera a b) = a
 alteraQtd :: Altera -> Int
 alteraQtd(Altera a b) = b
 
+alteraMaybeQtd :: Altera -> Maybe Int
+alteraMaybeQtd (Altera a b) = Just b
+
+maybeQtd :: Int -> Maybe Int
+maybeQtd a = Just a
+
 postAlteraEstoqueR :: Handler Html
 postAlteraEstoqueR = do
     ((result,_),_) <- runFormPost formAltera
@@ -176,6 +182,7 @@ postAlteraEstoqueR = do
         FormSuccess alterar -> do
             let pid = alteraId(alterar)
             runDB $ update pid [LivroEstoque +=. alteraQtd(alterar) ]
+            runDB $ update pid [LivroDisponivel +=. alteraMaybeQtd(alterar)] 
             redirect (DetalheLivroR pid)
         _ -> do
             setMessage $ [shamlet| Dados invalidos! |] 
