@@ -1,0 +1,27 @@
+<hr />
+
+ <div class="row" id="aluglivro">
+  <div id="actions" class="form-group col-md-5" style="Left:25%">
+   <div class="col-md-12">
+      <form action=@{RegistraLocarR} method=post enctype=#{enctype}>
+       ^{widget}
+       <br>
+         <input type="submit" value="Cadastrar" class="btn btn-primary">
+
+ <div class="row" id="showaluglivro">
+  <hr />
+  <div id="list" class="row">
+   <div class="col-md-3">
+   <div class="col-md-6">
+    <table class="table table-striped" cellspacing="0" cellpadding="0">
+     <thead>
+      <tr>
+       <th>Título do Livro
+       <th>Autor
+       <th>Editora
+       <th class="forms"><center>Ações
+     <tbody>
+      $forall (Entity pid alugar) <- listaalug
+       <tr>
+          ^{livById $ pid}
+   <div class="col-md-3">

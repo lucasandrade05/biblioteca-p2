@@ -46,9 +46,8 @@ formLivro = renderBootstrap $ Livro
                            fsLabel="Estoque",
                            fsTooltip= Nothing,
                            fsName= Nothing,
-                           fsAttrs=[("class","form-control"),("placeholder","EX: 3"),("style","display:inline-block")]} Nothing    
-
-    
+                           fsAttrs=[("class","form-control"),("placeholder","EX: 3"),("style","display:inline-block")]}  Nothing
+                           
 data Pesquisa = Pesquisa
     { pesquisa          :: Text
     }
@@ -104,6 +103,7 @@ getCadLivroR = do
         toWidget $ $(whamletFile "templates/menu.hamlet")
         toWidget $ $(whamletFile "templates/cadastrarlivro.hamlet") 
         
+
 
 postCadLivroR :: Handler Html
 postCadLivroR = do 

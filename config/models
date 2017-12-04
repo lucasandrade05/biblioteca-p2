@@ -1,4 +1,4 @@
-Livro json
+Livro 
     titulo          Text
     autor           Text
     editora         Text
@@ -9,29 +9,35 @@ Livro json
     UniqueLivro     titulo
     deriving Show
 
-Capa json
+EstoqueLivro 
+    livro           LivroId
+    estoque         Int
+    disponivel      Int
+    deriving Show
+
+Capa 
     nomeimagem      Text
     deriving Show
 
-Genero json
+Genero 
     titulo          Text
     descricao       Text
 
-Cliente json
+Cliente 
     nome        Text
     email       Text
     cpf         Text
     EmailUnico  email
     
-Alugar json
+Alugar 
     cliid       ClienteId
     livid       LivroId
     
-Usuario json
-    nome        Text
-    login       Text
-    cpf         Text
-    senha       Text
-    email       Text
-    UniqueEmail email
-    UniqueLogin login
+Usuario 
+    nome         Text
+    login        Text
+    cpf          Text
+    senha        Text
+    email        Text
+    EmailUsuario email
+    UniqueLogin  login
