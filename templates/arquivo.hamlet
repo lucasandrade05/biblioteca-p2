@@ -1,0 +1,10 @@
+<hr />
+            <div id="actions" class="form-group col-md-5" style="Left:25%">
+                <div class="col-md-12">
+                    <br>
+                      <form action=@{ArquivoR livid} method=POST enctype=#{enctype}>
+                          ^{widget}
+                             <br>
+                             <input type="submit" value="Alterar" class="btn btn-primary">
+        <script>
+         document.getElementById("pesq").style.display="none";</script>

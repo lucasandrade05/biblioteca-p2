@@ -9,7 +9,7 @@ Livro
     UniqueLivro     titulo
     deriving Show
 
-EstoqueLivro 
+Estoque 
     livro           LivroId
     disponivel      Int
     deriving Show

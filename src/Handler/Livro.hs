@@ -111,8 +111,8 @@ postCadLivroR = do
     ((result,_),_) <- runFormPost formLivro
     case result of
         FormSuccess livro -> do
-            runDB $ insert livro
-            redirect ListarLivroR
+            livid <- runDB $ insert livro
+            redirect (ArquivoR livid)
         _ -> do
             setMessage $ [shamlet| Dados invalidos! |] 
             redirect CadLivroR
@@ -123,6 +123,7 @@ getDetalheLivroR livroid = do
     (widget2, enctype) <- generateFormPost formPesquisa
     --livros <- runDB $ selectList [] [Asc LivroAutor, Asc LivroTitulo]
     livro <- runDB $ get404 livroid
+    imagem <- runDB $ selectList [CapaIdlivro ==. livroid][]
     defaultLayout $ do 
         addStylesheet $ (StaticR css_bootstrap_css)
         addScript $ StaticR js_jquery_min_js

@@ -1,9 +1,9 @@
 <hr />
- <div class="row">
-  <div class="col-md-4 style='padding:5px'">
-   <p><strong>Código</strong>
-   <p>#{fromSqlKey livroid}
  <div class="col-md-8">
+  <div class="row">
+   <div class="col-md-12">
+    <center><strong>Código</strong>
+    <center>#{fromSqlKey livroid}
   <div class="col-md-4">
    <p><strong>Nome do Livro</strong>
    <p>#{livroTitulo livro}
@@ -23,9 +23,14 @@
    <p><strong>Estoque Disponível</strong>
    <p>#{livroEstoque livro}
   <div id="actions" class="row">
-   <div class="col-md-12">
-    <form action=@{ListarLivroR} method=get><input type="submit" class="btn btn-default" value="Voltar"></input></form>
-    <form action="#" method=post><input type="submit" class="btn btn-warning" value="Editar"></input></form>
-    <form action=@{ApagarLivroR livroid} method=post><input type="submit" class="btn btn-danger" value="Excluir"></input></form>
+   <div class="col-md-12" style="display:inline-block">
+    <br>
+    <center>
+     <form style="display:inline-block" action=@{ListarLivroR} method=get><input type="submit" class="btn btn-default" value="Voltar"></input></form>
+     <form style="display:inline-block" action="#" method=post><input type="submit" class="btn btn-warning" value="Editar"></input></form>
+     <form style="display:inline-block" action=@{ApagarLivroR livroid} method=post><input type="submit" class="btn btn-danger" value="Excluir"></input></form>
+     <form style="display:inline-block" action=@{ArquivoR livroid} method=post><input type="submit" class="btn btn-warning" value="Alterar Capa"></input></form>
  <div class="col-md-4">
+  $forall (Entity pid capa) <- imagem
+   <img src="/static/capas/#{capaNomeimagem capa}" width="350px" height="527px"></img>
   
