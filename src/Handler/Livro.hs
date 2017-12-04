@@ -47,6 +47,7 @@ formLivro = renderBootstrap $ Livro
                            fsTooltip= Nothing,
                            fsName= Nothing,
                            fsAttrs=[("class","form-control"),("placeholder","EX: 3"),("style","display:inline-block")]}  Nothing
+    
                            
 data Pesquisa = Pesquisa
     { pesquisa          :: Text

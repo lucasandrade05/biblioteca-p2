@@ -11,12 +11,12 @@ Livro
 
 EstoqueLivro 
     livro           LivroId
-    estoque         Int
     disponivel      Int
     deriving Show
 
 Capa 
     nomeimagem      Text
+    idlivro         LivroId
     deriving Show
 
 Genero 

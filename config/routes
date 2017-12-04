@@ -13,7 +13,7 @@
 /livros/#LivroId/detalhes           DetalheLivroR   GET
 /livros/alterar                     AlteraEstoqueR  POST
 
-/arquivo                            ArquivoR        GET POST
+/arquivo/#LivroId                   ArquivoR        GET POST
 
 /clientes/listar                    ListarClienteR  GET
 /clientes/cadastrar                 CadClienteR     GET POST
