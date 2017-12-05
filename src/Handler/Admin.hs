@@ -13,6 +13,7 @@ getAdminR :: Handler Html
 getAdminR = do 
     defaultLayout [whamlet|
         <h1> BEM-VINDO ROOT!
-        <form action=@{LogoutR} method=post>
-            <input type="submit" value="Logout">
+        <br>
+        <form action=@{HomeR} method=post>
+            <input type="submit" value="Ir para o site!">
     |]
