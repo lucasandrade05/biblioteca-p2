@@ -30,8 +30,10 @@ instance Yesod App where
     isAuthorized LoginR _ = return Authorized
     isAuthorized ListarLivroR _ = return Authorized
     isAuthorized PesqLivroR _ = return Authorized
+    isAuthorized BuscarLivroR _ = return Authorized
     isAuthorized (DetalheLivroR _ ) _ = return Authorized
     isAuthorized CadUserR _ = ehAdmin
+    isAuthorized ListarUsuario _ = ehAdmin
     isAuthorized AdminR _ = ehAdmin
     isAuthorized _ _ = ehUsuario
 

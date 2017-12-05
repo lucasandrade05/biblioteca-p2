@@ -27,8 +27,6 @@
 /pesquisar/clientes                 PesqClienteR    POST
 /pesquisar/usuarios/#Text           BuscarUsuarioR  GET
 /pesquisar/usuarios                 PesqUsuarioR    POST
-/pesquisar/reservas/#Text           BuscarReservaR  GET
-/pesquisar/reservas                 PesqReservaR    POST
 
 /reserva/alugar                     AlugarR         GET
 /reserva/locar                      RegistraLocarR  POST

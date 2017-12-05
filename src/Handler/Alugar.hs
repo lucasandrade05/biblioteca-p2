@@ -112,7 +112,6 @@ getReservasR :: Handler Html
 getReservasR = do
     userlogado <- lookupSession "_ID"
     (widget2, enctype) <- generateFormPost formPesquisa
-    (widget5, enctype) <- generateFormPost formPesquisaAlugados
     alugados <- runDB $ selectList [] [Desc AlugarAlugado, Asc AlugarId]
     defaultLayout $ do 
         addStylesheet $ (StaticR css_bootstrap_css)
@@ -123,13 +122,6 @@ getReservasR = do
         toWidget $ $(whamletFile "templates/reservas.hamlet") 
         [whamlet| <script>document.getElementById("top").style.display = "none";</script>|]
 
-formPesquisaAlugados :: Form Pesquisa
-formPesquisaAlugados = renderBootstrap $ Pesquisa
-        <$> areq textField FieldSettings{fsId=Just "search",
-                           fsLabel="",
-                           fsTooltip= Nothing,
-                           fsName= Nothing,
-                           fsAttrs=[("class","form-control"),("placeholder","Digite sua pesquisa")]} Nothing
 
 livById :: AlugarId -> Widget
 livById idAlug = do 
@@ -157,4 +149,5 @@ clielivById idAlug = do
       <td>#{livroTitulo livro}
       <td>#{livroAutor livro}
     |]
+
     

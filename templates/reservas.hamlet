@@ -3,7 +3,7 @@
   <center><form .form-horizontal role=form action=@{PesqUsuarioR} method=post enctype=#{enctype}>
      <table>
       <tr>
-       <td>^{widget5}
+       <td>Lista de Locações
        <td style="vertical-align:bottom; padding-left:5px"><button type="submit" value="Pesquisar" class="btn btn-primary"> <span class="glyphicon glyphicon-search">
   <div class="table-responsive col-md-12">
    <table class="table table-striped" cellspacing="0" cellpadding="0">
@@ -25,7 +25,7 @@
           $maybe algd <- (alugarAlugado alugs)
             #{algd}
        <td class="forms"><center>
-          <form style="display:inline-block" action=@{DetalheClienteR (alugarLivid alugs)} method=get><input type="submit" class="btn btn-info" value="Ver Livro"></button></form>
+          <form style="display:inline-block" action=@{DetalheLivroR (alugarLivid alugs)} method=get><input type="submit" class="btn btn-info" value="Ver Livro"></button></form>
           <form style="display:inline-block" action=@{DetalheClienteR (alugarCliid alugs)} method=get><input type="submit" class="btn btn-info" value="Ver Cliente"></button></form>
           <form style="display:inline-block" action=@{DevolverR pid} method=post><input type="submit" class="btn btn-danger" value="Devolver"></button></form>
  <div id="bottom" class="row">
