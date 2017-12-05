@@ -1,24 +1,45 @@
 <hr />
 <div class="row" style="padding-left:2%">
- <div class="col-md-3">
-   <p><strong>Código</strong>
-   <p>#{fromSqlKey cliid}
- <div class="col-md-3">
-  <p><strong>Nome</strong>
-  <p>#{clienteNome cliente}
- <div class="col-md-3">
-  <p><strong>CPF</strong>
-  <p>#{clienteCpf cliente}
- <div class="col-md-3">
-  <p><strong>E-Mail</strong>
-  <p>#{clienteEmail cliente}
-  <br>
- <div class="col-md-6">
-  <p><strong>Locações:</strong>
-  <p>historico
- <div class="col-md-3">
- <div id="actions">
-  <div class="forms"><center>
-          <form style="display:inline-block" action=@{ListarClienteR} method=get><input type="submit" class="btn btn-primary" value="Voltar"></button></form>
-          <form style="display:inline-block" action="#" method=get><input type="submit" class="btn btn-warning" value="Editar"></button></form>
-          <form style="display:inline-block" action=@{ApagarClienteR cliid} method=post><input type="submit" class="btn btn-danger" value="Excluir"></button></form>
+   <div class="col-md-12"> 
+    <div class="col-md-3">
+      <p><strong>Código</strong>
+      <p>#{fromSqlKey cliid}
+    <div class="col-md-3">
+     <p><strong>Nome</strong>
+     <p>#{clienteNome cliente}
+    <div class="col-md-3">
+     <p><strong>CPF</strong>
+     <p>#{clienteCpf cliente}
+    <div class="col-md-3">
+     <p><strong>E-Mail</strong>
+     <p>#{clienteEmail cliente}
+<hr />
+   <div class="col-md-12">
+    <p><h3>Historico de Locações:</h3>
+    <div class="col-md-9">
+     <div class="row" id="showaluglivro">
+      
+      <div id="list" class="row">
+       <div class="col-md-offset-1">
+       <div class="col-md-12">
+        <table class="table table-striped" cellspacing="0" cellpadding="0">
+         <thead>
+          <tr>
+           <th><center>Cod. Locação
+           <th>Livro
+           <th>Autor
+           <th>Editora
+           <th><center>Data
+           <th><center>Devolvido
+         <tbody>
+          $forall (Entity pid alugar) <- listaalug
+           <tr>
+            <td><center>#{fromSqlKey pid}
+            ^{livById $ pid}
+
+    <div class="col-md-3">
+    <div id="actions">
+     <div class="forms"><center>
+             <form style="display:inline-block" action=@{ListarClienteR} method=get><input type="submit" class="btn btn-primary" value="Voltar"></button></form>
+             <form style="display:inline-block" action="#" method=get><input type="submit" class="btn btn-warning" value="Editar"></button></form>
+             <form style="display:inline-block" action=@{ApagarClienteR cliid} method=post><input type="submit" class="btn btn-danger" value="Excluir"></button></form>

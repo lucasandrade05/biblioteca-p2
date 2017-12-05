@@ -86,11 +86,12 @@ getDetalheClienteR cliid = do
     userlogado <- lookupSession "_ID"
     (widget2, enctype) <- generateFormPost formPesquisaCliente
     cliente <- runDB $ get404 cliid
+    listaalug <- runDB $ selectList [AlugarCliid ==. cliid][]
     defaultLayout $ do 
         addStylesheet $ (StaticR css_bootstrap_css)
         addScript $ StaticR js_jquery_min_js
         addScript $ StaticR js_bootstrap_min_js
-        let nomePagina = "# Histórico de Locações - " ++ (clienteNome cliente)  :: Text
+        let nomePagina = "# Ficha de Cliente - " ++ (clienteNome cliente)  :: Text
         toWidget $ $(whamletFile "templates/menucli.hamlet")
         toWidget $ $(whamletFile "templates/cliente.hamlet")
 
@@ -124,3 +125,22 @@ getBuscarClienteR cliente = do
             <div class="col-sm-6"> <i>Exibindo resultados para "#{cliente}" em Clientes. 
         |]
         
+livById :: AlugarId -> Widget
+livById idAlug = do 
+    alugar <- handlerToWidget $ runDB $ get404 idAlug
+    let idLiv = (alugarLivid alugar) :: LivroId
+    livro <- handlerToWidget $ runDB $ get404 idLiv
+    [whamlet|
+          <td> #{livroTitulo livro}
+          <td> #{livroAutor livro}
+          <td> #{livroEditora livro}
+          <td><center>
+          <td><center>
+            $maybe algd <- (alugarAlugado alugar)
+              #{boolToMsg(algd)}
+    |]
+
+
+boolToMsg :: Bool -> Text
+boolToMsg False = "Devolvido"
+boolToMsg True = "Alugado"

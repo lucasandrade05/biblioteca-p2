@@ -105,6 +105,7 @@ postDevolverR pid = do
     aluid <- runDB $ get404 pid  -- EH UM SELECT(procura o registro),
     --  SE ACHAR, PROSSEGUE, SE N ACHAR, BARRA O RESTANTE JOGANDO STATUS 404
     _ <- runDB $ update pid [AlugarAlugado =. (Just False)] 
+    _ <- runDB $ update (alugarLivid aluid) [LivroDisponivel +=. (Just 1)] 
     redirect (AlugarSacolaR (alugarCliid aluid))
 
 livById :: AlugarId -> Widget
