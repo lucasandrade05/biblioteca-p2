@@ -32,10 +32,12 @@ instance Yesod App where
     isAuthorized PesqLivroR _ = return Authorized
     isAuthorized (BuscarLivroR _ ) _ = return Authorized
     isAuthorized (DetalheLivroR _ ) _ = return Authorized
+    isAuthorized (StaticR _ ) _ = return Authorized
     isAuthorized CadUserR _ = ehAdmin
     isAuthorized ListarUsuarioR _ = ehAdmin
     isAuthorized AdminR _ = ehAdmin
     isAuthorized _ _ = ehUsuario
+
 
 ehAdmin :: Handler AuthResult
 ehAdmin = do

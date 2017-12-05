@@ -30,13 +30,13 @@ autenticar login senha = runDB $ selectFirst [UsuarioLogin ==. login
     
 getLoginR :: Handler Html
 getLoginR = do 
-    setTitle "Biblioteca Haskell - Login"
     (widget,enctype) <- generateFormPost formLogin
     (widget2, enctype2) <- generateFormPost formPesquisa
     (widget3, enctype3) <- generateFormPost formCadUser
     let nomePagina = "Efetuar Login:" :: Text
     userlogado <- lookupSession "_ID"
     defaultLayout $ do 
+        setTitle "Biblioteca Haskell - Login"
         addStylesheet $ (StaticR css_login_css)
         addStylesheet $ (StaticR css_bootstrap_css)
         toWidget $ $(whamletFile "templates/menu.hamlet")

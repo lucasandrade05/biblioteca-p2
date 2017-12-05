@@ -1,2 +1,19 @@
 <hr />
- 
+<div container>
+ <div id="list" class="row">
+  <center>
+     <table>
+      <tr>
+       <td><h1><center>Adicionados Recentemente:
+       
+  <div class="table-responsive col-md-12">
+    <center><table>
+      <tr>
+       $forall (Entity pid livro) <- livros
+        <td><center><h3>#{livroTitulo livro}</td>
+        <td>
+      <tr> 
+       $forall (Entity liid liv) <- livros
+        <td><center>^{capaById $ liid}
+        <td>&nbsp;&nbsp;
+        

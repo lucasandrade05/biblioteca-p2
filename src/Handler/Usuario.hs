@@ -54,13 +54,13 @@ postPesqUsuarioR = do
          
 getBuscarUsuarioR :: Text -> Handler Html
 getBuscarUsuarioR usuario = do
-    setTitle "Biblioteca Haskell - BuscarUsuario"
     userlogado <- lookupSession "_ID"
     (widget2, enctype) <- generateFormPost formPesquisa
     (widget5, enctype) <- generateFormPost formPesquisaUsuario
     usuarios <- runDB $ selectList ([Filter UsuarioLogin (Left $ "%"++ usuario ++"%") (BackendSpecificFilter "ILIKE")]
                               ||.[Filter UsuarioEmail  (Left $ "%"++ usuario ++"%") (BackendSpecificFilter "ILIKE")])[]
     defaultLayout $ do 
+        setTitle "Biblioteca Haskell - BuscarUsuario"
         addStylesheet $ (StaticR css_bootstrap_css)
         addScript $ StaticR js_jquery_min_js
         addScript $ StaticR js_bootstrap_min_js
