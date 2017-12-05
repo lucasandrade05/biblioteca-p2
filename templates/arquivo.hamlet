@@ -5,6 +5,6 @@
                       <form action=@{ArquivoR livid} method=POST enctype=#{enctype}>
                           ^{widget}
                              <br>
-                             <input type="submit" value="Alterar" class="btn btn-primary">
+                             <input type="submit" value="Enviar foto" class="btn btn-primary">
         <script>
          document.getElementById("pesq").style.display="none";</script>

@@ -4,32 +4,39 @@
    <div class="col-md-4">
     <p><strong>Código</strong>
     <p>#{fromSqlKey livroid}
-  <div class="col-md-4">
-   <p><strong>Nome do Livro</strong>
-   <p>#{livroTitulo livro}
-  <div class="col-md-4">
-   <p><strong>Genero</strong>
-   <p>#{livroGenero livro}
-  <div class="col-md-4">
-   <p><strong>Sinopse</strong>
-   <p>#{livroSinopse livro}
-  <br>
-  <div class="col-md-4">
-   <p><strong>Autor</strong>
-   <p>#{livroAutor livro}
-  <div class="col-md-4">
-   <p><strong>Ano</strong>
-   <p>#{livroAno livro}
-  <div class="col-md-4">
-   <p><strong>Estoque Total</strong>
-   <p>#{livroEstoque livro}
-  <hr />
-  <div id="actions" class="col-md-4">
-    <br>
-     <form style="display:inline-block" action=@{ListarLivroR} method=get><input type="submit" class="btn btn-default" value="Voltar"></input></form>
-     <form style="display:inline-block" action=@{ApagarLivroR livroid} method=post><input type="submit" class="btn btn-danger" value="Excluir"></input></form>
-  <div class="col-md-4">
-  <div class="col-md-4">
+  <div class="col-md-12">
+   <div class="col-md-4">
+    <p><strong>Nome do Livro</strong>
+    <p>#{livroTitulo livro}
+   <div class="col-md-4">
+    <p><strong>Genero</strong>
+    <p>#{livroGenero livro}
+   <div class="col-md-4">
+    <p><strong>Estoque Total</strong>
+    <p>#{livroEstoque livro}
+  <div class="col-md-12">
+   <div class="col-md-4">
+    <p><strong>Autor</strong>
+    <p>#{livroAutor livro}
+   <div class="col-md-4">
+    <p><strong>Ano</strong>
+    <p>#{livroAno livro}
+   <div class="col-md-4">
+    <p><strong>Estoque Disponivel</strong>
+    $maybe disp <- (livroDisponivel livro)
+     <p><strong>#{disp}</strong>
+   <hr />
+  <div class="col-md-12">
+   <div class="col-md-8">
+    <p><strong>Sinopse</strong>
+    <p>#{livroSinopse livro}"
+   <div id="actions" class="col-md-4">
+     <br>
+      <form style="display:inline-block" action=@{ListarLivroR} method=get><input type="submit" class="btn btn-default" value="Voltar"></input></form>
+      $maybe _ <- userlogado
+       <form style="display:inline-block" action=@{ApagarLivroR livroid} method=post><input type="submit" class="btn btn-danger" value="Excluir"></input></form>
+   
+  
  <div class="col-md-4">
   $forall (Entity pid capa) <- imagem
    <img src="/static/capas/#{capaNomeimagem capa}" width="350px" height="527px"></img>

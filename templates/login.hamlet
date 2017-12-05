@@ -4,13 +4,6 @@
     <div class="panel panel-login">
      <div class="panel-heading">
        <div class="col-xs-6">
-       <div class="log">
-        <div class="col-xs-12">
-         <button type="button" class="btn btn-default" id="login-form-link" onclick="ativalogin()">Logar
-       <div class="cad">
-        <div class="col-xs-12">
-         <button type="button" class="btn btn-default" id="register-form-link" onclick="ativacadastro()">Novo Cadastro</button>
-       
       
       <hr>
      
@@ -45,18 +38,3 @@
               <p align="center"><input type="submit" tabindex="4" class="btn btn-success" value="Efetuar Cadastro"></input></form>
            
           
-         
-<script>
- function ativalogin() {
-      document.getElementById("login-form").style.display = "block";
-      document.getElementById("register-form").style.display = "none";
-      document.getElementById("login-form-link").style.display = "none";
-      document.getElementById("register-form-link").style.display = "block";
-    };
- function ativacadastro() {
-      document.getElementById("login-form").style.display = "none";
-      document.getElementById("register-form").style.display = "block";
-      document.getElementById("login-form-link").style.display = "block";
-      document.getElementById("register-form-link").style.display = "none";
-     };
- ativalogin();</script>

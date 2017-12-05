@@ -13,6 +13,7 @@ import Handler.Livro
 
 getHomeR :: Handler Html
 getHomeR = do
+    userlogado <- lookupSession "_ID"
     (widget2, enctype) <- generateFormPost formPesquisa
     defaultLayout $ do 
         setTitle "Biblioteca Haskell"

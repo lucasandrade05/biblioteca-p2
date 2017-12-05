@@ -48,7 +48,8 @@ formLivro = renderBootstrap $ Livro
                            fsName= Nothing,
                            fsAttrs=[("class","form-control"),("placeholder","EX: 3"),("style","display:inline-block")]}  Nothing
     <*> aopt hiddenField "" Nothing
-    
+
+
                            
 data Pesquisa = Pesquisa
     { pesquisa          :: Text
@@ -71,6 +72,7 @@ livrosLista = do
        
 getListarLivroR :: Handler Html
 getListarLivroR = do 
+    userlogado <- lookupSession "_ID"
     (widget2, enctype) <- generateFormPost formPesquisa
     livros <- runDB $ selectList [] [Asc LivroAutor, Asc LivroTitulo]
     defaultLayout $ do 
@@ -91,6 +93,7 @@ postApagarLivroR pid = do
     
 getCadLivroR :: Handler Html
 getCadLivroR = do 
+     userlogado <- lookupSession "_ID"
      (widget, enctype) <- generateFormPost formLivro
      (widget2, enctype) <- generateFormPost formPesquisa
      (widget3, enctype) <- generateFormPost formAltera
@@ -120,6 +123,7 @@ postCadLivroR = do
 
 getDetalheLivroR :: LivroId -> Handler Html
 getDetalheLivroR livroid = do
+    userlogado <- lookupSession "_ID"
     (widget2, enctype) <- generateFormPost formPesquisa
     --livros <- runDB $ selectList [] [Asc LivroAutor, Asc LivroTitulo]
     livro <- runDB $ get404 livroid
@@ -193,6 +197,7 @@ postAlteraEstoqueR = do
     
 getBuscarLivroR :: Text -> Handler Html
 getBuscarLivroR livro = do
+    userlogado <- lookupSession "_ID"
     (widget2, enctype) <- generateFormPost formPesquisa
     livros <- runDB $ selectList ([Filter LivroTitulo (Left $ "%"++ livro ++"%") (BackendSpecificFilter "ILIKE")]
                               ||.[Filter LivroAutor  (Left $ "%"++ livro ++"%") (BackendSpecificFilter "ILIKE")]

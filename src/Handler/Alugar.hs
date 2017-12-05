@@ -45,6 +45,7 @@ formAlugar alugado = renderBootstrap $ Alugar
 
 getAlugarR :: Handler Html
 getAlugarR = do
+    userlogado <- lookupSession "_ID"
     (widget2, enctype) <- generateFormPost formPesquisa
     (widget, enctype) <- generateFormPost (formAlugar False)
     defaultLayout $ do
@@ -82,6 +83,7 @@ postRegistraLocarR = do
 
 getAlugarSacolaR :: ClienteId -> Handler Html
 getAlugarSacolaR idCli = do
+    userlogado <- lookupSession "_ID"
     (widget2, enctype) <- generateFormPost formPesquisa
     (widget, enctype) <- generateFormPost (formAlugar False)
     listaalug <- runDB $ selectList [AlugarCliid ==. idCli , AlugarAlugado ==. True] []
@@ -97,6 +99,14 @@ getAlugarSacolaR idCli = do
             document.getElementById('showaluglivro').style.display = 'block';
         |]
 
+postDevolverR :: AlugarId -> Handler Html 
+postDevolverR pid = do 
+    aluid <- runDB $ get404 pid  -- EH UM SELECT(procura o registro),
+    --  SE ACHAR, PROSSEGUE, SE N ACHAR, BARRA O RESTANTE JOGANDO STATUS 404
+    let clid = (alugarCliid aluid)
+    runDB (delete pid)
+    redirect (AlugarSacolaR clid)
+
 livById :: AlugarId -> Widget
 livById idAlug = do 
     alugar <- handlerToWidget $ runDB $ get404 idAlug
@@ -108,6 +118,6 @@ livById idAlug = do
           <td> #{livroEditora livro}
           <td class="forms"><center>
             <form style="display:inline-block" action=@{DetalheLivroR idLiv} method=get><input type="submit" class="btn btn-success" value="Visualizar"></button></form>
-            <form style="display:inline-block" action="#" method=post><input type="submit" class="btn btn-danger" value="Devolver"></button></form>
+            <form style="display:inline-block" action=@{DevolverR idAlug} method=post><input type="submit" class="btn btn-danger" value="Devolver"></button></form>
     |]
     

@@ -38,6 +38,7 @@ formPesquisaCliente = renderBootstrap $ Pesquisa
 
 getListarClienteR :: Handler Html
 getListarClienteR = do 
+    userlogado <- lookupSession "_ID"
     (widget2, enctype) <- generateFormPost formPesquisaCliente
     clientes <- runDB $ selectList [] [Asc ClienteNome, Asc ClienteEmail]
     defaultLayout $ do 
@@ -49,7 +50,8 @@ getListarClienteR = do
         toWidget $ $(whamletFile "templates/listarcliente.hamlet") 
         
 getCadClienteR :: Handler Html
-getCadClienteR = do 
+getCadClienteR = do
+     userlogado <- lookupSession "_ID"
      (widget, enctype) <- generateFormPost formCliente
      (widget2, enctype) <- generateFormPost formPesquisaCliente
      defaultLayout $ do
@@ -81,6 +83,7 @@ postApagarClienteR pid = do
 
 getDetalheClienteR :: ClienteId -> Handler Html
 getDetalheClienteR cliid = do
+    userlogado <- lookupSession "_ID"
     (widget2, enctype) <- generateFormPost formPesquisa
     cliente <- runDB $ get404 cliid
     defaultLayout $ do 
@@ -104,6 +107,7 @@ postPesqClienteR = do
          
 getBuscarClienteR :: Text -> Handler Html
 getBuscarClienteR cliente = do
+    userlogado <- lookupSession "_ID"
     (widget2, enctype) <- generateFormPost formPesquisa
     clientes <- runDB $ selectList ([Filter ClienteNome (Left $ "%"++ cliente ++"%") (BackendSpecificFilter "ILIKE")]
                               ||.[Filter ClienteEmail  (Left $ "%"++ cliente ++"%") (BackendSpecificFilter "ILIKE")]

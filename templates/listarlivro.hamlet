@@ -8,7 +8,7 @@
       <th>Título do Livro
       <th>Autor
       <th>Editora
-      <th><center>Estoque Disponível
+      <th><center>Estoque Total
       <th class="forms"><center>Ações
     <tbody>
      $forall (Entity pid livro) <- livros
@@ -18,10 +18,12 @@
        <td> #{livroAutor livro}
        <td> #{livroEditora livro}
        <td><center>#{livroEstoque livro}
-       <td class="forms"><center>
+       
+        <td class="forms"><center>
           <form style="display:inline-block" action=@{DetalheLivroR pid} method=get><input type="submit" class="btn btn-success" value="Visualizar"></button></form>
-          <form style="display:inline-block" action=@{DetalheLivroR pid} method=get><input type="submit" class="btn btn-warning" value="Editar"></button></form>
-          <form style="display:inline-block" action=@{ApagarLivroR pid} method=post><input type="submit" class="btn btn-danger" value="Excluir"></button></form>
+          $maybe _ <- userlogado
+           <form style="display:inline-block" action=@{DetalheLivroR pid} method=get><input type="submit" class="btn btn-warning" value="Editar"></button></form>
+           <form style="display:inline-block" action=@{ApagarLivroR pid} method=post><input type="submit" class="btn btn-danger" value="Excluir"></button></form>
  <div id="bottom" class="row">
   <div class="col-md-12">
    <ul class="pagination">

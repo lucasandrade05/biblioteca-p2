@@ -4,11 +4,11 @@
    <table class="table table-striped" cellspacing="0" cellpadding="0">
     <thead>
      <tr>
-      <th class="col-md-1">Codigo
-      <th class="col-md-3">Nome
-      <th class="col-md-3">E-mail
-      <th class="col-md-2">CPF
-      <th class="col-md-1">
+      <th>Codigo
+      <th>Nome
+      <th>E-mail
+      <th>CPF
+      <th>
       <th class="forms"><center>Ações
     <tbody>
      $forall (Entity pid cliente) <- clientes
@@ -18,7 +18,7 @@
        <td> #{clienteEmail cliente}
        <td> #{clienteCpf cliente}
        <td>
-       <td class="forms" style="display:inline-block"><center>
+       <td class="forms"><center>
           <form style="display:inline-block" action=@{DetalheClienteR pid} method=get><input type="submit" class="btn btn-success" value="Visualizar"></button></form>
           <form style="display:inline-block" action="#" method=get><input type="submit" class="btn btn-warning" value="Editar"></button></form>
           <form style="display:inline-block" action=@{ApagarClienteR pid} method=post><input type="submit" class="btn btn-danger" value="Excluir"></button></form>

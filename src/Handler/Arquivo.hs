@@ -36,6 +36,7 @@ postArquivoR livid = do
         
 getArquivoR :: LivroId -> Handler Html
 getArquivoR livid = do 
+    userlogado <- lookupSession "_ID"
     (widget,  enctype) <- generateFormPost formArquivo
     (widget2, _) <- generateFormPost formPesquisa
     livro <- runDB $ get404 livid

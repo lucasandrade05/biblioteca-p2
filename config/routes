@@ -29,6 +29,7 @@
 /reserva/alugar                     AlugarR         GET
 /reserva/locar                      RegistraLocarR  POST
 /reserva/alugar/#ClienteId          AlugarSacolaR   GET
+/reserva/devolver/#AlugarId         DevolverR       POST
 
 /login                              LoginR          GET POST
 /logout                             LogoutR         POST

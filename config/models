@@ -35,7 +35,7 @@ Alugar
     
 Usuario 
     login        Text
-    senha        Text
     email        Text
+    senha        Text
     EmailUsuario email
     UniqueLogin  login
