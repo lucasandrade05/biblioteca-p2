@@ -25,6 +25,8 @@
 /pesquisar/livros                   PesqLivroR      POST
 /pesquisar/clientes/#Text           BuscarClienteR  GET
 /pesquisar/clientes                 PesqClienteR    POST
+/pesquisar/usuarios/#Text           BuscarUsuarioR  GET
+/pesquisar/usuarios                 PesqUsuarioR    POST
 
 /reserva/alugar                     AlugarR         GET
 /reserva/locar                      RegistraLocarR  POST
@@ -34,4 +36,7 @@
 /login                              LoginR          GET POST
 /logout                             LogoutR         POST
 /admin                              AdminR          GET
+
 /cadastrar                          CadUserR        POST
+/usuarios/listar                    ListarUsuarioR  GET
+/usuarios/#UsuarioId/Apagar         ApagarUsuarioR  POST

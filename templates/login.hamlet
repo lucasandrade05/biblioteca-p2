@@ -12,6 +12,7 @@
        <div class="col-lg-12">
         
         <div id="login-form">
+         <center><h2>Faça seu Login :</h2></center>
          <form action=@{LoginR} method="post" role="form" style="display: block;">
            ^{widget}
           
@@ -29,6 +30,7 @@
           
          
         <div id="register-form">
+         <center><h2>Cadastrar Usuário</h2></center>
          <form action=@{CadUserR} method="post" role="form">
            ^{widget3}
            <div class="form-group">

@@ -60,7 +60,7 @@
          <button class="dropbtn">Usuarios
          <div class="dropdown-content">
                <a href=@{LoginR}>Cadastrar Usuario</a>
-               <a href=#>Listar Usuarios</a>
+               <a href=@{ListarUsuarioR}>Listar Usuarios</a>
        <li><button class="dropbtn">
             <a href="#" class="dropbtn" style="text-decoration:none">Perfil</a></li>
        <li><form action=@{LogoutR} method=post><input type="submit" class="dropbtn" style="text-decoration:none" value="LOGOUT"></input></form></li>

@@ -1,5 +1,10 @@
 <hr />
  <div id="list" class="row">
+  <center><form .form-horizontal role=form action=@{PesqUsuarioR} method=post enctype=#{enctype}>
+     <table>
+      <tr>
+       <td>^{widget5}
+       <td style="vertical-align:bottom; padding-left:5px"><button type="submit" value="Pesquisar" class="btn btn-primary"> <span class="glyphicon glyphicon-search">
   <div class="table-responsive col-md-12">
    <table class="table table-striped" cellspacing="0" cellpadding="0">
     <thead>
@@ -13,11 +18,10 @@
      $forall (Entity pid users) <- usuarios
       <tr>
        <td> #{fromSqlKey pid}
-       <td> #{usuarioNome cliente}
-       <td> #{usuarioEmail cliente}
+       <td> #{usuarioLogin users}
+       <td> #{usuarioEmail users}
        <td>
        <td class="forms"><center>
-          <form style="display:inline-block" action=@{DetalheUsuarioR pid} method=get><input type="submit" class="btn btn-success" value="Visualizar"></button></form>
           <form style="display:inline-block" action="#" method=get><input type="submit" class="btn btn-warning" value="Editar"></button></form>
           <form style="display:inline-block" action=@{ApagarUsuarioR pid} method=post><input type="submit" class="btn btn-danger" value="Excluir"></button></form>
  <div id="bottom" class="row">

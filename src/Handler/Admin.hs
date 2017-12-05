@@ -14,6 +14,6 @@ getAdminR = do
     defaultLayout [whamlet|
         <h1> BEM-VINDO ROOT!
         <br>
-        <form action=@{HomeR} method=post>
+        <form action=@{HomeR} method=get>
             <input type="submit" value="Ir para o site!">
     |]

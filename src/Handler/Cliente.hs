@@ -84,7 +84,7 @@ postApagarClienteR pid = do
 getDetalheClienteR :: ClienteId -> Handler Html
 getDetalheClienteR cliid = do
     userlogado <- lookupSession "_ID"
-    (widget2, enctype) <- generateFormPost formPesquisa
+    (widget2, enctype) <- generateFormPost formPesquisaCliente
     cliente <- runDB $ get404 cliid
     defaultLayout $ do 
         addStylesheet $ (StaticR css_bootstrap_css)
@@ -96,7 +96,7 @@ getDetalheClienteR cliid = do
 
 postPesqClienteR :: Handler Html
 postPesqClienteR = do 
-    ((result,_),_) <- runFormPost formPesquisa
+    ((result,_),_) <- runFormPost formPesquisaCliente
     case result of
         FormSuccess pesquisar -> do 
             let cliente = toTexto(pesquisar)
@@ -108,7 +108,7 @@ postPesqClienteR = do
 getBuscarClienteR :: Text -> Handler Html
 getBuscarClienteR cliente = do
     userlogado <- lookupSession "_ID"
-    (widget2, enctype) <- generateFormPost formPesquisa
+    (widget2, enctype) <- generateFormPost formPesquisaCliente
     clientes <- runDB $ selectList ([Filter ClienteNome (Left $ "%"++ cliente ++"%") (BackendSpecificFilter "ILIKE")]
                               ||.[Filter ClienteEmail  (Left $ "%"++ cliente ++"%") (BackendSpecificFilter "ILIKE")]
                               ||.[Filter ClienteCpf (Left $ "%"++ cliente ++"%") (BackendSpecificFilter "ILIKE")])[]
