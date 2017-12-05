@@ -26,8 +26,8 @@ livrosListaAlug = do
        optionsPairs $ fmap (\ent -> (livroTitulo $ entityVal ent, entityKey ent)) entidades
 
 
-formAlugar :: Bool -> Form Alugar
-formAlugar alugado = renderBootstrap $ Alugar
+formAlugar :: Form Alugar
+formAlugar  = renderBootstrap $ Alugar
     <$> areq (selectField clientesLista) FieldSettings{fsId=Just "cli",
                            fsLabel="Cliente :",
                            fsTooltip= Nothing,
@@ -38,8 +38,7 @@ formAlugar alugado = renderBootstrap $ Alugar
                            fsTooltip= Nothing,
                            fsName= Nothing,
                            fsAttrs=[("class","form-control"),("placeholder","EX: Policarpo Quaresma")]} Nothing
-    <*> pure alugado
-    <*> areq dayField "Em: " Nothing
+    <*> aopt hiddenField "" Nothing
     
     
 
@@ -47,7 +46,7 @@ getAlugarR :: Handler Html
 getAlugarR = do
     userlogado <- lookupSession "_ID"
     (widget2, enctype) <- generateFormPost formPesquisa
-    (widget, enctype) <- generateFormPost (formAlugar False)
+    (widget, enctype) <- generateFormPost formAlugar
     defaultLayout $ do
         addStylesheet $ (StaticR css_bootstrap_css)
         addScript $ StaticR js_jquery_min_js
@@ -62,21 +61,23 @@ getAlugarR = do
     
 postRegistraLocarR :: Handler Html
 postRegistraLocarR = do
-    ((result,_),_) <- runFormPost (formAlugar True)
+    ((result,_),_) <- runFormPost formAlugar
     case result of
         FormSuccess alugar -> do 
             let idLiv = (alugarLivid alugar) :: LivroId
             estdisp <- runDB $ get404 idLiv
+            
             if ((livroDisponivel estdisp) > (Just 0)) then do
-                runDB $ insert alugar
+                alug <- runDB $ insert alugar
                 runDB $ update idLiv [LivroDisponivel -=. (Just 1)] 
+                runDB $ update alug [AlugarAlugado =. (Just True)] 
                 redirect (AlugarSacolaR (alugarCliid alugar))
             else do
                 defaultLayout $ do
                     [whamlet| <script>alert("Estamos sem estoque disponivel para este livro no momento.");</script>|]
         _ -> do
-            setMessage $ [shamlet| Dados invalidos! |] 
-            redirect AlugarR
+            defaultLayout $ do
+                    [whamlet| <script>alert("Algo ruim aconteceu...");</script>|]
  
 
 
@@ -85,8 +86,8 @@ getAlugarSacolaR :: ClienteId -> Handler Html
 getAlugarSacolaR idCli = do
     userlogado <- lookupSession "_ID"
     (widget2, enctype) <- generateFormPost formPesquisa
-    (widget, enctype) <- generateFormPost (formAlugar False)
-    listaalug <- runDB $ selectList [AlugarCliid ==. idCli , AlugarAlugado ==. True] []
+    (widget, enctype) <- generateFormPost formAlugar
+    listaalug <- runDB $ selectList [AlugarCliid ==. idCli , AlugarAlugado ==. (Just True)] []
     cliente <- runDB $ get404 idCli
     defaultLayout $ do 
         addStylesheet $ (StaticR css_bootstrap_css)
@@ -103,9 +104,8 @@ postDevolverR :: AlugarId -> Handler Html
 postDevolverR pid = do 
     aluid <- runDB $ get404 pid  -- EH UM SELECT(procura o registro),
     --  SE ACHAR, PROSSEGUE, SE N ACHAR, BARRA O RESTANTE JOGANDO STATUS 404
-    let clid = (alugarCliid aluid)
-    runDB (delete pid)
-    redirect (AlugarSacolaR clid)
+    _ <- runDB $ update pid [AlugarAlugado =. (Just False)] 
+    redirect (AlugarSacolaR (alugarCliid aluid))
 
 livById :: AlugarId -> Widget
 livById idAlug = do 

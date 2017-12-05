@@ -30,8 +30,7 @@ Cliente
 Alugar 
     cliid       ClienteId
     livid       LivroId
-    alugado     Bool
-    dia         Day
+    alugado     Bool Maybe
     
 Usuario 
     login        Text
