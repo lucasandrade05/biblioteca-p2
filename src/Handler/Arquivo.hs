@@ -41,6 +41,7 @@ getArquivoR livid = do
     (widget2, _) <- generateFormPost formPesquisa
     livro <- runDB $ get404 livid
     defaultLayout $ do
+        setTitle "Biblioteca Haskell - Upload Capa"
         addStylesheet $ (StaticR css_bootstrap_css)
         addScript $ StaticR js_jquery_min_js
         addScript $ StaticR js_bootstrap_min_js

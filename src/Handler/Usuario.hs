@@ -25,6 +25,7 @@ getListarUsuarioR = do
     (widget5, enctype) <- generateFormPost formPesquisaUsuario
     usuarios <- runDB $ selectList [] [Asc UsuarioLogin]
     defaultLayout $ do 
+        setTitle "Biblioteca Haskell - Usuarios"
         addStylesheet $ (StaticR css_bootstrap_css)
         addScript $ StaticR js_jquery_min_js
         addScript $ StaticR js_bootstrap_min_js
@@ -53,6 +54,7 @@ postPesqUsuarioR = do
          
 getBuscarUsuarioR :: Text -> Handler Html
 getBuscarUsuarioR usuario = do
+    setTitle "Biblioteca Haskell - BuscarUsuario"
     userlogado <- lookupSession "_ID"
     (widget2, enctype) <- generateFormPost formPesquisa
     (widget5, enctype) <- generateFormPost formPesquisaUsuario

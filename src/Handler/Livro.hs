@@ -76,6 +76,7 @@ getListarLivroR = do
     (widget2, enctype) <- generateFormPost formPesquisa
     livros <- runDB $ selectList [] [Asc LivroAutor, Asc LivroTitulo]
     defaultLayout $ do 
+        setTitle "Biblioteca Haskell - Livros"
         addStylesheet $ (StaticR css_bootstrap_css)
         addScript $ StaticR js_jquery_min_js
         addScript $ StaticR js_bootstrap_min_js
@@ -99,6 +100,7 @@ getCadLivroR = do
      (widget3, enctype) <- generateFormPost formAltera
      livros <- runDB $ selectList [] [Asc LivroAutor, Asc LivroTitulo]
      defaultLayout $ do
+        setTitle "Biblioteca Haskell - Adicionar Livros"
         addStylesheet $ (StaticR css_bootstrap_css)
         addScript $ StaticR js_jquery_min_js
         addScript $ StaticR js_bootstrap_min_js
@@ -129,6 +131,7 @@ getDetalheLivroR livroid = do
     livro <- runDB $ get404 livroid
     imagem <- runDB $ selectFirst [CapaIdlivro ==. livroid][]
     defaultLayout $ do 
+        setTitle "Biblioteca Haskell - Detalhe Livro"
         addStylesheet $ (StaticR css_bootstrap_css)
         addScript $ StaticR js_jquery_min_js
         addScript $ StaticR js_bootstrap_min_js

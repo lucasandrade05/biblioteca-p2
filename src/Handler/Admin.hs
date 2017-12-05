@@ -11,9 +11,11 @@ import Database.Persist.Postgresql
 
 getAdminR :: Handler Html
 getAdminR = do 
-    defaultLayout [whamlet|
-        <h1> BEM-VINDO ROOT!
-        <br>
-        <form action=@{HomeR} method=get>
-            <input type="submit" value="Ir para o site!">
-    |]
+    defaultLayout $ do
+        setTitle "Biblioteca Haskell - Admin"
+        [whamlet|
+            <h1> BEM-VINDO ADMIN!
+            <br>
+            <form action=@{HomeR} method=get>
+                <input type="submit" value="Ir para o site!">
+        |]

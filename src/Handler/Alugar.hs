@@ -48,6 +48,7 @@ getAlugarR = do
     (widget2, enctype) <- generateFormPost formPesquisa
     (widget, enctype) <- generateFormPost formAlugar
     defaultLayout $ do
+        setTitle "Biblioteca Haskell - Alugar"
         addStylesheet $ (StaticR css_bootstrap_css)
         addScript $ StaticR js_jquery_min_js
         addScript $ StaticR js_bootstrap_min_js
@@ -90,6 +91,7 @@ getAlugarSacolaR idCli = do
     listaalug <- runDB $ selectList [AlugarCliid ==. idCli , AlugarAlugado ==. (Just True)] []
     cliente <- runDB $ get404 idCli
     defaultLayout $ do 
+        setTitle "Biblioteca Haskell - Sacola"
         addStylesheet $ (StaticR css_bootstrap_css)
         addScript $ StaticR js_jquery_min_js
         addScript $ StaticR js_bootstrap_min_js
@@ -114,6 +116,7 @@ getReservasR = do
     (widget2, enctype) <- generateFormPost formPesquisa
     alugados <- runDB $ selectList [] [Desc AlugarAlugado, Asc AlugarId]
     defaultLayout $ do 
+        setTitle "Biblioteca Haskell - Reservas"
         addStylesheet $ (StaticR css_bootstrap_css)
         addScript $ StaticR js_jquery_min_js
         addScript $ StaticR js_bootstrap_min_js

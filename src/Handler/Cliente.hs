@@ -42,6 +42,7 @@ getListarClienteR = do
     (widget2, enctype) <- generateFormPost formPesquisaCliente
     clientes <- runDB $ selectList [] [Asc ClienteNome, Asc ClienteEmail]
     defaultLayout $ do 
+        setTitle "Biblioteca Haskell - Clientes"
         addStylesheet $ (StaticR css_bootstrap_css)
         addScript $ StaticR js_jquery_min_js
         addScript $ StaticR js_bootstrap_min_js
@@ -55,6 +56,7 @@ getCadClienteR = do
      (widget, enctype) <- generateFormPost formCliente
      (widget2, enctype) <- generateFormPost formPesquisaCliente
      defaultLayout $ do
+        setTitle "Biblioteca Haskell - Cadastro Cliente"
         addStylesheet $ (StaticR css_bootstrap_css)
         addScript $ StaticR js_jquery_min_js
         addScript $ StaticR js_bootstrap_min_js
@@ -88,6 +90,7 @@ getDetalheClienteR cliid = do
     cliente <- runDB $ get404 cliid
     listaalug <- runDB $ selectList [AlugarCliid ==. cliid][]
     defaultLayout $ do 
+        setTitle "Biblioteca Haskell - Historico"
         addStylesheet $ (StaticR css_bootstrap_css)
         addScript $ StaticR js_jquery_min_js
         addScript $ StaticR js_bootstrap_min_js
@@ -115,6 +118,7 @@ getBuscarClienteR cliente = do
                               ||.[Filter ClienteCpf (Left $ "%"++ cliente ++"%") (BackendSpecificFilter "ILIKE")])[]
     --livros <- runDB $ selectList [LivroTitulo >. "%"++livros++"%"][Asc LivroAutor, Asc LivroTitulo]
     defaultLayout $ do 
+        setTitle "Biblioteca Haskell - Resultados da Busca"
         addStylesheet $ (StaticR css_bootstrap_css)
         addScript $ StaticR js_jquery_min_js
         addScript $ StaticR js_bootstrap_min_js

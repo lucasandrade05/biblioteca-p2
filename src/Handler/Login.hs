@@ -30,6 +30,7 @@ autenticar login senha = runDB $ selectFirst [UsuarioLogin ==. login
     
 getLoginR :: Handler Html
 getLoginR = do 
+    setTitle "Biblioteca Haskell - Login"
     (widget,enctype) <- generateFormPost formLogin
     (widget2, enctype2) <- generateFormPost formPesquisa
     (widget3, enctype3) <- generateFormPost formCadUser
