@@ -108,6 +108,29 @@ postDevolverR pid = do
     _ <- runDB $ update (alugarLivid aluid) [LivroDisponivel +=. (Just 1)] 
     redirect (AlugarSacolaR (alugarCliid aluid))
 
+getReservasR :: Handler Html
+getReservasR = do
+    userlogado <- lookupSession "_ID"
+    (widget2, enctype) <- generateFormPost formPesquisa
+    (widget5, enctype) <- generateFormPost formPesquisaAlugados
+    alugados <- runDB $ selectList [] [Desc AlugarAlugado, Asc AlugarId]
+    defaultLayout $ do 
+        addStylesheet $ (StaticR css_bootstrap_css)
+        addScript $ StaticR js_jquery_min_js
+        addScript $ StaticR js_bootstrap_min_js
+        let nomePagina = "Livros alugados :" :: Text
+        toWidget $ $(whamletFile "templates/menu.hamlet")
+        toWidget $ $(whamletFile "templates/reservas.hamlet") 
+        [whamlet| <script>document.getElementById("top").style.display = "none";</script>|]
+
+formPesquisaAlugados :: Form Pesquisa
+formPesquisaAlugados = renderBootstrap $ Pesquisa
+        <$> areq textField FieldSettings{fsId=Just "search",
+                           fsLabel="",
+                           fsTooltip= Nothing,
+                           fsName= Nothing,
+                           fsAttrs=[("class","form-control"),("placeholder","Digite sua pesquisa")]} Nothing
+
 livById :: AlugarId -> Widget
 livById idAlug = do 
     alugar <- handlerToWidget $ runDB $ get404 idAlug
@@ -120,5 +143,18 @@ livById idAlug = do
           <td class="forms"><center>
             <form style="display:inline-block" action=@{DetalheLivroR idLiv} method=get><input type="submit" class="btn btn-success" value="Visualizar"></button></form>
             <form style="display:inline-block" action=@{DevolverR idAlug} method=post><input type="submit" class="btn btn-danger" value="Devolver"></button></form>
+    |]
+    
+
+clielivById :: AlugarId -> Widget
+clielivById idAlug = do 
+    alugar <- handlerToWidget $ runDB $ get404 idAlug
+    livro <- handlerToWidget $ runDB $ get404 (alugarLivid alugar)
+    cliente <- handlerToWidget $ runDB $ get404 (alugarCliid alugar)
+    [whamlet|
+      <td>#{clienteNome cliente}
+      <td><center>#{clienteCpf cliente}
+      <td>#{livroTitulo livro}
+      <td>#{livroAutor livro}
     |]
     

@@ -21,14 +21,13 @@
                <a href=@{CadLivroR}>Incluir Livro</a>
                <a href=@{ListarLivroR}>Buscar Livros</a>
                <a href=@{AlugarR}>Reservar Livro</a>
-               <a href=#>Devolver Livro</a>
        <li>
         <div class="dropdown">
          <button class="dropbtn">Clientes
          <div class="dropdown-content">
                <a href=@{CadClienteR}>Cadastrar Cliente</a>
                <a href=@{ListarClienteR}>Buscar Clientes</a>
-               <a href=#>Ver Reservas</a>
+               <a href=@{ReservasR}>Ver Reservas</a>
        <li><button class="dropbtn">
             <a href="#" class="dropbtn" style="text-decoration:none">Perfil</a></li>
        <li><form action=@{LogoutR} method=post><input type="submit" class="dropbtn" style="text-decoration:none" value="LOGOUT"></input></form></li>
@@ -47,14 +46,13 @@
                <a href=@{CadLivroR}>Incluir Livro</a>
                <a href=@{ListarLivroR}>Buscar Livros</a>
                <a href=@{AlugarR}>Reservar Livro</a>
-               <a href=#>Devolver Livro</a>
        <li>
         <div class="dropdown">
          <button class="dropbtn">Clientes
          <div class="dropdown-content">
                <a href=@{CadClienteR}>Cadastrar Cliente</a>
                <a href=@{ListarClienteR}>Buscar Clientes</a>
-               <a href=#>Ver Reservas</a>
+               <a href=@{ReservasR}>Ver Reservas</a>
        <li>
         <div class="dropdown">
          <button class="dropbtn">Usuarios

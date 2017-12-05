@@ -17,9 +17,6 @@ Capa
     UniqueImg       nomeimagem
     deriving Show
 
-Genero 
-    titulo          Text
-    descricao       Text
 
 Cliente 
     nome        Text
